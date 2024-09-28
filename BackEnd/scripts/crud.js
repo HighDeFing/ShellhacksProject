@@ -2,6 +2,7 @@ import { ObjectId } from "mongodb";
 import {
   tutorCollection,
   studentCollection,
+  subjectCollection,
 } from "../../DataBase/config/db.js";
 import bcrypt from "bcrypt";
 
@@ -85,4 +86,35 @@ export const deleteTutor = async (id) => {
   const objectId = new ObjectId(id);
   const deletedTutor = await tutorCollection.deleteOne({ _id: objectId });
   return deletedTutor;
+};
+
+// Function to create subject record
+export const createSubject = async (subject) => {
+  const result = await subjectCollection.insertOne(subject);
+  const newSubject = await subjectCollection.findOne({
+    _id: result.insertedId,
+  });
+  return newSubject;
+};
+
+// Function to get subjects
+export const readSubjects = async () => {
+  return await subjectCollection.find({}).toArray();
+};
+
+// Function to update subject record
+export const updateSubject = async (id, subject) => {
+  const objectId = new ObjectId(id);
+  const updatedSubject = await subjectCollection.updateOne(
+      { _id: objectId },
+      { $set: subject }
+  );
+  return updatedSubject;
+};
+
+// Function to delete subject record
+export const deleteSubject = async (id) => {
+  const objectId = new ObjectId(id);
+  const deletedSubject = await subjectCollection.deleteOne({ _id: objectId });
+  return deletedSubject;
 };

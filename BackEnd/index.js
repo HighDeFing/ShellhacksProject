@@ -4,6 +4,7 @@ import studentRoutes from "./routes/studentRoutes.js";
 import tutorRoutes from "./routes/tutorRoutes.js";
 import { initCollections } from "../DataBase/config/db.js";
 import loginRoutes from "./scripts/login.js";
+import subjectRoutes from "./routes/subjectRoutes.js";
 
 const app = express();
 
@@ -16,6 +17,9 @@ const startServer = async () => {
     await initCollections();
     console.log("Database collections initialized");
 
+    // Mount subject routes to app (subject CRUD endpoints)
+    app.use("/api/subjects", subjectRoutes);
+
     // Mount student routes to app (student CRUD endpoints)
     app.use("/api/students", studentRoutes);
 
@@ -23,6 +27,8 @@ const startServer = async () => {
     app.use("/api/tutors", tutorRoutes);
 
     app.use("/api", loginRoutes);
+
+
 
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
