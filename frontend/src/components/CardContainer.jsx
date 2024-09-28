@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import CourseCard from "./CourseCard";
 import CourseTag from "./CourseTag";
 
@@ -14,7 +15,9 @@ const CardContainer = () => {
       </div>
       {/* Change to Grid to allow 4 per row */}
       <div className="flex w-full flex-wrap justify-center space-x-8">
-        <CourseCard className="basis-1/4" />
+        <Link to="/course">
+          <CourseCard className="basis-1/4" />
+        </Link>
         <CourseCard className="basis-1/4" />
         <CourseCard className="basis-1/4" />
         <CourseCard className="basis-1/4" />
