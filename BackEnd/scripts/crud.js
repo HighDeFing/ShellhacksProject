@@ -1,21 +1,12 @@
-// File: `server.js`
-import express from 'express';
-import bodyParser from 'body-parser';
-import dotenv from 'dotenv';
-import { createStudent, readStudents, updateStudent, deleteStudent } from './crud.js';
+// File: `crud.js`
 import connectToDatabase from '../../DataBase/config/db.js';
 
-const router = express.Router();
-
-const initCollection = async () => {
+const fetchTeachers = async () => {
     const db = await connectToDatabase();
+    const collection = db.collection('Teacher');
+    const teachers = await collection.find({}).toArray();
+    console.log('Teachers fetched:', teachers);
+    return teachers;
+};
 
-    const teacherCollection = db.collection('Teacher');
-    const studentCollection = db.collection('Student');
-}
-
-router.post('/api/create_student', async (req, res) => {
-    const student = req.body;
-    const result = await createStudent(student);
-    res.send(result);
-}
+export { fetchTeachers };
