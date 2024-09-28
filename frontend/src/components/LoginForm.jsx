@@ -11,7 +11,6 @@ const LoginForm = ({ role, setIsOpen }) => {
     setError(""); // Reset error state before request
 
     try {
-      console.log(JSON.stringify({ email, password, role }));
       const response = await fetch("http://localhost:3000/api/login", {
         method: "POST",
         headers: {
@@ -30,11 +29,36 @@ const LoginForm = ({ role, setIsOpen }) => {
       // Store the token in localStorage
       localStorage.setItem("authToken", data.token);
 
-      // Verify that the token is being saved
-      console.log(
-        "Token saved to localStorage:",
-        localStorage.getItem("authToken")
-      );
+      // Close the modal
+      setIsOpen(false);
+    } catch (error) {
+      setError(error.message); // Show error message
+    }
+  };
+
+  // Handle registration submission
+  const handleRegisterSubmit = async (e) => {
+    e.preventDefault();
+    setError(""); // Reset error state before request
+
+    try {
+      const response = await fetch("http://localhost:3000/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password, role }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Registration failed");
+      }
+
+      const data = await response.json();
+      console.log("Registration successful", data);
+
+      // Store the token or handle registration as needed
+      localStorage.setItem("authToken", data.token);
 
       // Close the modal
       setIsOpen(false);
@@ -56,7 +80,7 @@ const LoginForm = ({ role, setIsOpen }) => {
       <div className="flex w-full max-w-md flex-col justify-center gap-2 rounded-lg p-4 align-middle">
         {error && <p className="text-red-500">{error}</p>}
 
-        <form onSubmit={handleLoginSubmit} className="space-y-5">
+        <form className="space-y-5">
           <div>
             <label htmlFor="login_email" className="block font-bold text-white">
               Email:
@@ -90,8 +114,19 @@ const LoginForm = ({ role, setIsOpen }) => {
 
           {/* Buttons */}
           <div className="mt-4 flex w-auto gap-2">
+            {/* Register Button */}
             <button
               type="submit"
+              onClick={handleRegisterSubmit}
+              className="w-full rounded bg-green-500 py-2 font-semibold text-white transition-opacity hover:bg-green-600"
+            >
+              Register
+            </button>
+
+            {/* Login Button */}
+            <button
+              type="submit"
+              onClick={handleLoginSubmit}
               className="w-full rounded bg-white py-2 font-semibold text-indigo-600 transition-opacity hover:opacity-90"
             >
               Login
