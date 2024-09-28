@@ -6,6 +6,7 @@ import "./index.css";
 import CardContainer from "./components/CardContainer.jsx";
 import CardPage from "./components/CardPage.jsx";
 import LandingPage from "./components/LandingPage.jsx";
+import TutorList from "./components/TutorList.jsx";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "/course",
         element: <CardPage />,
+      },
+      {
+        path: "/tutors",
+        element: <TutorList />,
       },
     ],
   },
