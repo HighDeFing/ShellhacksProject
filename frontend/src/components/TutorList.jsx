@@ -3,17 +3,17 @@ import { useNavigate } from "react-router-dom";
 
 const TutorList = () => {
   const [tutors, setTutors] = useState([]);
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/teachers/read")
+    fetch("http://localhost:3000/api/tutors/read")
       .then((response) => response.json())
       .then((data) => setTutors(data));
   }, []);
 
-    const handleButtonClick = (id) => {
-        navigate(`/teacher/${id}`);
-    };
+  const handleButtonClick = (id) => {
+    navigate(`/tutor/${id}`);
+  };
 
   return (
     <div>
@@ -25,7 +25,9 @@ const TutorList = () => {
             <li>{tutor.phone}</li>
             <li>{tutor.gender}</li>
             <li>{tutor.subjects.join(", ")}</li>
-              <button onClick={() => handleButtonClick(tutor._id)}>Pick Me!</button>
+            <button onClick={() => handleButtonClick(tutor._id)}>
+              Pick Me!
+            </button>
           </div>
         ))}
       </ul>

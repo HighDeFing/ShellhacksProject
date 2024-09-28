@@ -28,9 +28,9 @@ const router = createBrowserRouter([
         element: <TutorList />,
       },
       {
-        path: "/teacher/:id",
+        path: "/tutor/:id",
         element: <TutorCard />,
-      }
+      },
     ],
   },
 ]);
