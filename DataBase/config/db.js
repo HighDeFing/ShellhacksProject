@@ -17,4 +17,24 @@ const connectToDatabase = async () => {
     }
 }
 
-export default connectToDatabase;
+const createCollection = async (db, collectionName) => {
+    try {
+        const collections = await db.listCollections({ name: collectionName }).toArray();
+        if (collections.length === 0) {
+            await db.createCollection(collectionName);
+            console.log(`Collection ${collectionName} created`);
+        } else {
+            console.log(`Collection ${collectionName} already exists`);
+        }
+    } catch (error) {
+        console.error(`Error creating collection ${collectionName}`, error);
+    }
+}
+
+const initCollections = async () => {
+    const db = await connectToDatabase();
+    await createCollection(db, 'Teacher');
+    await createCollection(db, 'Student');
+}
+
+export { connectToDatabase, initCollections }
