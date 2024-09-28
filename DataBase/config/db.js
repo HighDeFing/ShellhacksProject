@@ -72,21 +72,33 @@ const addDummyData = async (db) => {
         teacherCollection = db.collection('Teacher');
         studentCollection = db.collection('Student');
 
-        // Read and parse the students.json file
-        const studentsFilePath = path.join(__dirname, '../data', 'students.json');
-        const studentsData = JSON.parse(fs.readFileSync(studentsFilePath, 'utf8'));
+        // Check if the Student collection is empty
+        const studentCount = await studentCollection.countDocuments();
+        if (studentCount === 0) {
+            // Read and parse the students.json file
+            const studentsFilePath = path.join(__dirname, '../data', 'students.json');
+            const studentsData = JSON.parse(fs.readFileSync(studentsFilePath, 'utf8'));
 
-        // Insert the parsed data into the Student collection
-        await studentCollection.insertMany(studentsData);
-        console.log('Student data inserted successfully');
+            // Insert the parsed data into the Student collection
+            await studentCollection.insertMany(studentsData);
+            console.log('Student data inserted successfully');
+        } else {
+            console.log('Student collection is not empty');
+        }
 
-        // Read and parse the teachers.json file
-        const teachersFilePath = path.join(__dirname, '../data', 'teachers.json');
-        const teachersData = JSON.parse(fs.readFileSync(teachersFilePath, 'utf8'));
+        // Check if the Teacher collection is empty
+        const teacherCount = await teacherCollection.countDocuments();
+        if (teacherCount === 0) {
+            // Read and parse the teachers.json file
+            const teachersFilePath = path.join(__dirname, '../data', 'teachers.json');
+            const teachersData = JSON.parse(fs.readFileSync(teachersFilePath, 'utf8'));
 
-        // Insert the parsed data into the Teacher collection
-        await teacherCollection.insertMany(teachersData);
-        console.log('Teacher data inserted successfully');
+            // Insert the parsed data into the Teacher collection
+            await teacherCollection.insertMany(teachersData);
+            console.log('Teacher data inserted successfully');
+        } else {
+            console.log('Teacher collection is not empty');
+        }
     } catch (error) {
         console.error('Error adding dummy data', error);
     }
