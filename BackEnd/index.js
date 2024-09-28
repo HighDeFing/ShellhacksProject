@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { json } from 'express';
 import studentRoutes from './routes/studentRoutes.js';
 import teacherRoutes from './routes/teacherRoutes.js';
 import { initCollections } from '../DataBase/config/db.js';
