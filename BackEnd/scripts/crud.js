@@ -1,8 +1,21 @@
 import { ObjectId } from 'mongodb';
 import { teacherCollection, studentCollection } from '../../DataBase/config/db.js';
+import bcrypt from 'bcrypt';
+
 
 // Function to create student record
 export const createStudent = async (student) => {
+
+    if (!student.password) {
+        throw new Error('Password is required');
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(student.password, 10);
+
+    // Replace the plain password with the hashed password
+    student.password = hashedPassword;
+
     const result = await studentCollection.insertOne(student);
     const newStudent = await studentCollection.findOne({ _id: result.insertedId });
     return newStudent;
@@ -31,6 +44,15 @@ export const deleteStudent = async (id) => {
 
 // Function to create teacher record
 export const createTeacher = async (teacher) => {
+
+    if (!teacher.password) {
+        throw new Error('Password is required');
+    }
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(teacher.password, 10);
+
+    // Replace the plain password with the hashed password
+    teacher.password = hashedPassword;
     const result = await teacherCollection.insertOne(teacher);
     const newTeacher = await teacherCollection.findOne({ _id: result.insertedId });
     return newTeacher;
