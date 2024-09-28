@@ -1,10 +1,29 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient, ServerApiVersion } from 'mongodb';
 import fs from 'fs';
 import path from 'path';
-import './dotenv.js'
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import dotenv from 'dotenv';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 const uri = process.env.MONGODB_URI;
-const client = new MongoClient(uri);
+
+if (!uri) {
+    console.error("MONGODB_URI is not defined, please check .env");
+    process.exit(1);
+}
+
+const client = new MongoClient(uri, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    }
+  });
 
 let teacherCollection;
 let studentCollection;
@@ -27,6 +46,7 @@ const connectToDatabase = async () => {
 
 // Function will create a collection
 const createCollection = async (db, collectionName) => {
+    console.log('Creating collections...')
     try {
         // List collections by name
         const collections = await db.listCollections({ name: collectionName }).toArray();
@@ -53,7 +73,7 @@ const addDummyData = async (db) => {
         studentCollection = db.collection('Student');
 
         // Read and parse the students.json file
-        const studentsFilePath = path.join('../data', 'students.json');
+        const studentsFilePath = path.join(__dirname, '../data', 'students.json');
         const studentsData = JSON.parse(fs.readFileSync(studentsFilePath, 'utf8'));
 
         // Insert the parsed data into the Student collection
@@ -61,7 +81,7 @@ const addDummyData = async (db) => {
         console.log('Student data inserted successfully');
 
         // Read and parse the teachers.json file
-        const teachersFilePath = path.join('../data', 'teachers.json');
+        const teachersFilePath = path.join(__dirname, '../data', 'teachers.json');
         const teachersData = JSON.parse(fs.readFileSync(teachersFilePath, 'utf8'));
 
         // Insert the parsed data into the Teacher collection
@@ -69,8 +89,6 @@ const addDummyData = async (db) => {
         console.log('Teacher data inserted successfully');
     } catch (error) {
         console.error('Error adding dummy data', error);
-    } finally {
-        process.exit();
     }
 };
 

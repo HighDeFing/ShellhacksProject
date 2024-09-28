@@ -1,7 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { teacherCollection, studentCollection } from '../../DataBase/config/db.js';
 
-
 // Function to create student record
 export const createStudent = async (student) => {
     const result = await studentCollection.insertOne(student);

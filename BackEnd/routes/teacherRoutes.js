@@ -1,5 +1,5 @@
 import express from 'express';
-import { createTeacher, readTeachers, updateTeacher, deleteTeacher } from './crud.js';
+import { createTeacher, readTeachers, updateTeacher, deleteTeacher } from '../scripts/crud.js';
 
 const router = express.Router();
 
