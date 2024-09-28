@@ -1,21 +1,62 @@
-// File: `server.js`
-import express from 'express';
-import bodyParser from 'body-parser';
-import dotenv from 'dotenv';
-import { createStudent, readStudents, updateStudent, deleteStudent } from './crud.js';
+import { ObjectId } from 'mongodb';
 import connectToDatabase from '../../DataBase/config/db.js';
 
-const router = express.Router();
-
-const initCollection = async () => {
+// Function to retrieve collection
+const getCollection = async (collectionName) => {
     const db = await connectToDatabase();
+    return db.collection(collectionName);
+};
 
-    const teacherCollection = db.collection('Teacher');
-    const studentCollection = db.collection('Student');
-}
+// Function to create student record
+export const createStudent = async (student) => {
+    const studentCollection = await getCollection('Student');
+    const result = await studentCollection.insertOne(student);
+    return result.ops[0];
+};
 
-router.post('/api/create_student', async (req, res) => {
-    const student = req.body;
-    const result = await createStudent(student);
-    res.send(result);
-}
+// Function to get students
+export const readStudents = async () => {
+    const studentCollection = await getCollection('Student');
+    return await studentCollection.find({}).toArray();
+};
+
+// Function to update student record
+export const updateStudent = async (id, student) => {
+    const studentCollection = await getCollection('Student');
+    const result = await studentCollection.updateOne({ _id: ObjectId(id) }, { $set: student });
+    return result.modifiedCount > 0;
+};
+
+// Function to delete student record
+export const deleteStudent = async (id) => {
+    const studentCollection = await getCollection('Student');
+    const result = await studentCollection.deleteOne({ _id: ObjectId(id) });
+    return result.deletedCount > 0;
+};
+
+// Function to create teacher record
+export const createTeacher = async (teacher) => {
+    const teacherCollection = await getCollection('Teacher');
+    const result = await teacherCollection.insertOne(teacher);
+    return result.ops[0];
+};
+
+// Function to get teachers
+export const readTeachers = async () => {
+    const teacherCollection = await getCollection('Teacher');
+    return await teacherCollection.find({}).toArray();
+};
+
+// Function to update teacher record
+export const updateTeacher = async (id, teacher) => {
+    const teacherCollection = await getCollection('Teacher');
+    const result = await teacherCollection.updateOne({ _id: ObjectId(id) }, { $set: teacher });
+    return result.modifiedCount > 0;
+};
+
+// Function to delete teacher record
+export const deleteTeacher = async (id) => {
+    const teacherCollection = await getCollection('Teacher');
+    const result = await teacherCollection.deleteOne({ _id: ObjectId(id) });
+    return result.deletedCount > 0;
+};
