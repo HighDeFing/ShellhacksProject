@@ -27,6 +27,10 @@ const router = createBrowserRouter([
         path: "/tutors",
         element: <TutorList />,
       },
+      {
+        path: "/teacher/:id",
+        element: <TutorCard />,
+      }
     ],
   },
 ]);
