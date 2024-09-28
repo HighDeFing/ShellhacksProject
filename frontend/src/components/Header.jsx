@@ -13,7 +13,7 @@ const Header = () => {
           <button className="flex h-12 items-center justify-center rounded-md border-2 border-black px-4 py-2 text-2xl hover:bg-gray-700 hover:text-white">
             I am a Student
           </button>
-          <Link to="/tutors">
+          <Link to="/login">
             <button className="flex h-12 items-center justify-center rounded-md border-2 border-black px-4 py-2 text-2xl hover:bg-gray-700 hover:text-white">
               I am a Tutor
             </button>

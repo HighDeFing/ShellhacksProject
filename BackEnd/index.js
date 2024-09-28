@@ -3,6 +3,7 @@ import cors from 'cors';
 import studentRoutes from './routes/studentRoutes.js';
 import teacherRoutes from './routes/teacherRoutes.js';
 import { initCollections } from '../DataBase/config/db.js';
+import loginRoutes from './scripts/login.js';
 
 const app = express();
 
@@ -20,6 +21,8 @@ const startServer = async () => {
 
     // Mount teacher routes to app (teacher CRUD endpoints)
     app.use('/api/teachers', teacherRoutes);
+
+    app.use('/api', loginRoutes);
 
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
