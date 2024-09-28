@@ -6,6 +6,9 @@ import './dotenv.js'
 const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri);
 
+let teacherCollection;
+let studentCollection;
+
 // Function will return a database object
 const connectToDatabase = async () => {
     try {
@@ -15,13 +18,14 @@ const connectToDatabase = async () => {
 
         //Get 'schoolDatabase' database
         const db = client.db('schoolDatabase');
+
         return db;
     } catch (error) {
         console.error('Error connecting to MongoDB', error);
     }
 };
 
-//Function will create a collection
+// Function will create a collection
 const createCollection = async (db, collectionName) => {
     try {
         // List collections by name
@@ -45,8 +49,8 @@ const createCollection = async (db, collectionName) => {
 const addDummyData = async (db) => {
     try {
         // Define collections
-        const teacherCollection = db.collection('Teacher');
-        const studentCollection = db.collection('Student');
+        teacherCollection = db.collection('Teacher');
+        studentCollection = db.collection('Student');
 
         // Read and parse the students.json file
         const studentsFilePath = path.join('../data', 'students.json');
@@ -78,4 +82,4 @@ const initCollections = async () => {
     await addDummyData(db);
 };
 
-export { connectToDatabase, initCollections };
+export { initCollections, teacherCollection, studentCollection };
