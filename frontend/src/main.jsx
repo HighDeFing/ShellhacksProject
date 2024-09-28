@@ -9,6 +9,7 @@ import TutorList from "./components/TutorList.jsx";
 import Login from "./components/LoginForm.jsx";
 import Modal from "./components/Modal.jsx";
 import TutorCard from "./components/TutorCard.jsx";
+import Profile from "./components/Profile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/tutor/:id",
         element: <TutorCard />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
     ],
   },
