@@ -6,6 +6,7 @@ import {
   deleteTutor,
 } from "../scripts/crud.js";
 import { tutorCollection } from "../../DataBase/config/db.js";
+import { subjectCollection } from "../../DataBase/config/db.js";
 import { ObjectId } from "mongodb";
 
 const router = express.Router();
@@ -45,6 +46,21 @@ router.delete("/delete/:id", async (req, res) => {
   const id = req.params.id;
   const result = await deleteTutor(id);
   res.send(result);
+});
+
+router.get('/readsubject/:id', async (req, res) => {
+  const subjectId = req.params.id;
+  try {
+    const subject = await subjectCollection.findOne({ id: parseInt(subjectId, 10) });
+    if (!subject) {
+      return res.status(404).json({ message: 'Subject not found' });
+    }
+
+    const tutors = await tutorCollection.find({ subject_id: { $in: [subject.id] } }).toArray();
+    res.send(tutors);
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
 });
 
 export default router;
