@@ -1,11 +1,16 @@
-import express from 'express'
-const app = express()
-const port = 3000
+import express from 'express';
+import studentRoutes from './routes/studentRoutes.js';
+import teacherRoutes from './routes/teacherRoutes.js';
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+const app = express();
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+// Mount student routes to app (student CRUD endpoints)
+app.use('/api/students', studentRoutes);
+
+// Mount teacher routes to app (teacher CRUD endpoints)
+app.use('/api/teachers', teacherRoutes);
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}`);
+});
