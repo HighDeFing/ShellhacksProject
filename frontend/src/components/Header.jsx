@@ -1,6 +1,19 @@
 import { Link } from "react-router-dom";
+import Modal from "./Modal";
+import { useState, useEffect } from "react";
 
 const Header = () => {
+  const [authToken, setAuthToken] = useState(null);
+
+  useEffect(() => {
+    // Retrieve the stored token from localStorage
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      setAuthToken(token);
+      console.log("Token retrieved from localStorage:", token); // Debugging
+    }
+  }, []);
+
   return (
     <div className="bg h-24 w-full border-b border-black border-opacity-5 bg-gray-50">
       <div className="flex h-full w-full items-center justify-between px-12">
@@ -10,14 +23,13 @@ const Header = () => {
           </p>
         </Link>
         <div className="flex space-x-7">
-          <button className="flex h-12 items-center justify-center rounded-md border-2 border-black px-4 py-2 text-2xl hover:bg-gray-700 hover:text-white">
-            I am a Student
-          </button>
-          <Link to="/login">
-            <button className="flex h-12 items-center justify-center rounded-md border-2 border-black px-4 py-2 text-2xl hover:bg-gray-700 hover:text-white">
-              I am a Tutor
-            </button>
-          </Link>
+          {/* Show token or "Not logged in" */}
+          <p className="w-[15ch] overflow-hidden border-2">
+            Logged in: {authToken ? authToken : "Not logged in"}
+          </p>
+
+          <Modal role="student" buttonText="I am a Student" />
+          <Modal role="tutor" buttonText="I am a Tutor" />
         </div>
       </div>
     </div>

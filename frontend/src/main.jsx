@@ -3,11 +3,11 @@ import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
-import CardContainer from "./components/CardContainer.jsx";
 import CardPage from "./components/CardPage.jsx";
 import LandingPage from "./components/LandingPage.jsx";
 import TutorList from "./components/TutorList.jsx";
-import Login from "./components/Login.jsx";
+import Login from "./components/LoginForm.jsx";
+import Modal from "./components/Modal.jsx";
 
 const router = createBrowserRouter([
   {
@@ -26,10 +26,6 @@ const router = createBrowserRouter([
         path: "/tutors",
         element: <TutorList />,
       },
-      {
-        path: "/login",
-        element: <Login />,
-      }
     ],
   },
 ]);
