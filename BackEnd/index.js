@@ -5,6 +5,8 @@ import { initCollections } from '../DataBase/config/db.js';
 
 const app = express();
 
+app.use(express.json());
+
 const startServer = async () => {
   try {
     // Initialize collections

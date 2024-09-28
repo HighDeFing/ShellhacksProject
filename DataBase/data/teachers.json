@@ -1,6 +1,5 @@
 [
     {
-        "id": 1,
         "name": "John Doe",
         "email": "johndoe@example.com",
         "phone": "+1234567890",
@@ -12,7 +11,6 @@
         "password": "password789"
     },
     {
-        "id": 2,
         "name": "Emma Johnson",
         "email": "emmajohnson@example.com",
         "phone": "+0987654321",
@@ -24,7 +22,6 @@
         "password": "password789"
     },
     {
-        "id": 3,
         "name": "Michael Brown",
         "email": "michaelbrown@example.com",
         "phone": "+1234567893",
@@ -36,7 +33,6 @@
         "password": "password789"
     },
     {
-        "id": 4,
         "name": "Sophia White",
         "email": "sophiawhite@example.com",
         "phone": "+1234567894",
