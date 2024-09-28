@@ -15,20 +15,25 @@ export const readStudents = async () => {
 
 // Function to update student record
 export const updateStudent = async (id, student) => {
-    const result = await studentCollection.updateOne({ _id: ObjectId(id) }, { $set: student });
-    return result.modifiedCount > 0;
+    const objectId = new ObjectId(id);
+    const updatedStudent = await studentCollection.updateOne({ _id: objectId }, { $set: student });
+    return updatedStudent;
 };
 
 // Function to delete student record
 export const deleteStudent = async (id) => {
-    const result = await studentCollection.deleteOne({ _id: ObjectId(id) });
-    return result.deletedCount > 0;
+    const objectId = new ObjectId(id);
+    const updatedStudent = await studentCollection.deleteOne({ _id: objectId });
+    return {
+        "deleted": true // Will update later
+    };
 };
 
 // Function to create teacher record
 export const createTeacher = async (teacher) => {
     const result = await teacherCollection.insertOne(teacher);
-    return result.ops[0];
+    const newTeacher = await teacherCollection.findOne({ _id: result.insertedId });
+    return newTeacher;
 };
 
 // Function to get teachers
@@ -38,12 +43,14 @@ export const readTeachers = async () => {
 
 // Function to update teacher record
 export const updateTeacher = async (id, teacher) => {
-    const result = await teacherCollection.updateOne({ _id: ObjectId(id) }, { $set: teacher });
-    return result.modifiedCount > 0;
+    const objectId = new ObjectId(id);
+    const updatedTeacher = await teacherCollection.updateOne({ _id: objectId }, { $set: teacher });
+    return updatedTeacher;
 };
 
 // Function to delete teacher record
 export const deleteTeacher = async (id) => {
-    const result = await teacherCollection.deleteOne({ _id: ObjectId(id) });
-    return result.deletedCount > 0;
+    const objectId = new ObjectId(id);
+    const deletedTeacher = await teacherCollection.deleteOne({ _id: objectId });
+    return deletedTeacher;
 };
