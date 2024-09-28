@@ -1,0 +1,46 @@
+[
+    {
+        "name": "John Doe",
+        "email": "johndoe@example.com",
+        "phone": "+1234567890",
+        "gender": "Male",
+        "pictures": "john_picture.jpg",
+        "created_at": "2023-10-05T14:48:00.000Z",
+        "subjects": ["Math", "Science"],
+        "schedule": "Mon-Fri, 9am-5pm",
+        "password": "password789"
+    },
+    {
+        "name": "Emma Johnson",
+        "email": "emmajohnson@example.com",
+        "phone": "+0987654321",
+        "gender": "Female",
+        "pictures": "emma_picture.jpg",
+        "created_at": "2023-10-05T14:48:00.000Z",
+        "subjects": ["English", "History"],
+        "schedule": "Mon-Fri, 8am-4pm",
+        "password": "password789"
+    },
+    {
+        "name": "Michael Brown",
+        "email": "michaelbrown@example.com",
+        "phone": "+1234567893",
+        "gender": "Male",
+        "pictures": "michael_picture.jpg",
+        "created_at": "2023-10-05T14:48:00.000Z",
+        "subjects": ["Math", "History"],
+        "schedule": "Mon-Fri, 10am-6pm",
+        "password": "password789"
+    },
+    {
+        "name": "Sophia White",
+        "email": "sophiawhite@example.com",
+        "phone": "+1234567894",
+        "gender": "Female",
+        "pictures": "sophia_picture.jpg",
+        "created_at": "2023-10-05T14:48:00.000Z",
+        "subjects": ["Science", "English"],
+        "schedule": "Mon-Fri, 7am-3pm",
+        "password": "password789"
+    }
+]
