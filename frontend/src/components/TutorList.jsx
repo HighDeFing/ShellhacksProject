@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const TutorList = () => {
   const [tutors, setTutors] = useState([]);
+    const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:3000/api/teachers/read")
@@ -9,7 +11,9 @@ const TutorList = () => {
       .then((data) => setTutors(data));
   }, []);
 
-  console.log(tutors);
+    const handleButtonClick = (id) => {
+        navigate(`/teacher/${id}`);
+    };
 
   return (
     <div>
@@ -21,6 +25,7 @@ const TutorList = () => {
             <li>{tutor.phone}</li>
             <li>{tutor.gender}</li>
             <li>{tutor.subjects.join(", ")}</li>
+              <button onClick={() => handleButtonClick(tutor._id)}>Pick Me!</button>
           </div>
         ))}
       </ul>

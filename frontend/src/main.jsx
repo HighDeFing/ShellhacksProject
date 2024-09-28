@@ -8,6 +8,7 @@ import LandingPage from "./components/LandingPage.jsx";
 import TutorList from "./components/TutorList.jsx";
 import Login from "./components/LoginForm.jsx";
 import Modal from "./components/Modal.jsx";
+import TutorCard from "./components/TutorCard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/course",
-        element: <CardPage />,
+        element: <TutorList />,
       },
       {
         path: "/tutors",

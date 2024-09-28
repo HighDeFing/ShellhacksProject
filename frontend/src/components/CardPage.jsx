@@ -1,3 +1,5 @@
+import Schedule from "./Schedule.jsx";
+
 const CardPage = () => {
   return (
     <div className="flex h-dvh w-full items-center justify-center border-2 align-middle">
@@ -8,7 +10,11 @@ const CardPage = () => {
         <p>Info</p>
         <p>Info</p>
       </div>
+        <Schedule >
+
+        </Schedule>
     </div>
+
   );
 };
 
