@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Mathematics I",
+    "tutors_id": [101, 102],
+    "image_url": "/images/mathematics.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Physics II",
+    "tutors_id": [103],
+    "image_url": "/images/physics.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Chemistry I",
+    "tutors_id": [104, 105],
+    "image_url": "/images/chemistry.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Biology",
+    "tutors_id": [106],
+    "image_url": "/images/biology.jpg"
+  },
+  {
+    "id": 5,
+    "name": "English",
+    "tutors_id": [107, 108],
+    "image_url": "/images/english.jpg"
+  }
+]

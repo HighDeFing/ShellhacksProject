@@ -14,6 +14,7 @@ const TutorList = () => {
   const handleButtonClick = (id) => {
     navigate(`/tutor/${id}`);
   };
+  console.log(tutors)
 
   return (
     <div>
@@ -24,7 +25,7 @@ const TutorList = () => {
             <li>{tutor.name}</li>
             <li>{tutor.phone}</li>
             <li>{tutor.gender}</li>
-            <li>{tutor.subjects.join(", ")}</li>
+            <li>{tutor.subjects}</li>
             <button onClick={() => handleButtonClick(tutor._id)}>
               Pick Me!
             </button>

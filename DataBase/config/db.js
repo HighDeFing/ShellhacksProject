@@ -4,6 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 import dotenv from "dotenv";
+import bcrypt from "bcrypt";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -27,6 +28,8 @@ const client = new MongoClient(uri, {
 
 let tutorCollection;
 let studentCollection;
+
+let subjectCollection;
 
 // Function will return a database object
 const connectToDatabase = async () => {
@@ -70,34 +73,44 @@ const createCollection = async (db, collectionName) => {
 // Function will add student and tutor (tutor) data to the collections
 const addDummyData = async (db) => {
   try {
-    // Define collections
     tutorCollection = db.collection("Tutor");
     studentCollection = db.collection("Student");
+    subjectCollection = db.collection("Subject");
 
-    // Check if the Student collection is empty
+    const subjectCount = await subjectCollection.countDocuments();
+    if (subjectCount === 0) {
+      const subjectsFilePath = path.join(__dirname, "../data", "subjects.json");
+      const subjectsData = JSON.parse(fs.readFileSync(subjectsFilePath, "utf8"));
+      await subjectCollection.insertMany(subjectsData);
+      console.log("Subject data inserted successfully");
+    } else {
+      console.log("Subject collection is not empty");
+    }
+
     const studentCount = await studentCollection.countDocuments();
     if (studentCount === 0) {
-      // Read and parse the students.json file
       const studentsFilePath = path.join(__dirname, "../data", "students.json");
-      const studentsData = JSON.parse(
-        fs.readFileSync(studentsFilePath, "utf8")
-      );
+      const studentsData = JSON.parse(fs.readFileSync(studentsFilePath, "utf8"));
 
-      // Insert the parsed data into the Student collection
+      for (let student of studentsData) {
+        student.password = await bcrypt.hash(student.password, 10);
+      }
+
       await studentCollection.insertMany(studentsData);
       console.log("Student data inserted successfully");
     } else {
       console.log("Student collection is not empty");
     }
 
-    // Check if the Tutor collection is empty
     const tutorCount = await tutorCollection.countDocuments();
     if (tutorCount === 0) {
-      // Read and parse the tutors.json file
       const tutorsFilePath = path.join(__dirname, "../data", "tutors.json");
       const tutorsData = JSON.parse(fs.readFileSync(tutorsFilePath, "utf8"));
 
-      // Insert the parsed data into the Tutor collection
+      for (let tutor of tutorsData) {
+        tutor.password = await bcrypt.hash(tutor.password, 10);
+      }
+
       await tutorCollection.insertMany(tutorsData);
       console.log("Tutor data inserted successfully");
     } else {
@@ -113,7 +126,8 @@ const initCollections = async () => {
   const db = await connectToDatabase();
   await createCollection(db, "Tutor");
   await createCollection(db, "Student");
+  await createCollection(db, "Subject");
   await addDummyData(db);
 };
 
-export { initCollections, tutorCollection, studentCollection };
+export { initCollections, tutorCollection, studentCollection, subjectCollection };

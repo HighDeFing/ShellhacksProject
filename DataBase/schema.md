@@ -27,7 +27,12 @@
 | stregth    | string   | Strength of the student in the subjects |
 | weakness   | string   | Weakness of the student in the subjects |
 
-###
+### Subject:
+| Field      | Type     | Description                             |
+| ---------- | -------- | --------------------------------------- |
+| id         | int      | Unique identifier for the subject       |
+| name       | string   | Name of the subject                     |
+| tutors_id  | int      | Tutor id who teaches the subject        |
 
 To add data just run
 
