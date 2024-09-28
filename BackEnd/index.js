@@ -1,4 +1,5 @@
 import express, { json } from 'express';
+import cors from 'cors';
 import studentRoutes from './routes/studentRoutes.js';
 import teacherRoutes from './routes/teacherRoutes.js';
 import { initCollections } from '../DataBase/config/db.js';
@@ -6,6 +7,7 @@ import { initCollections } from '../DataBase/config/db.js';
 const app = express();
 
 app.use(express.json());
+app.use(cors())
 
 const startServer = async () => {
   try {
