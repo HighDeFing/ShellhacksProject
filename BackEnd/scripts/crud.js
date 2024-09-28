@@ -4,7 +4,8 @@ import { teacherCollection, studentCollection } from '../../DataBase/config/db.j
 // Function to create student record
 export const createStudent = async (student) => {
     const result = await studentCollection.insertOne(student);
-    return result.ops[0];
+    const newStudent = await studentCollection.findOne({ _id: result.insertedId });
+    return newStudent;
 };
 
 // Function to get students
