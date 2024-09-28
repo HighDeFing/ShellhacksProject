@@ -23,7 +23,7 @@ const TutorCard = () => {
       <h5 className="font-bold">{tutor.name}</h5>
       <p>Phone: {tutor.phone}</p>
       <p>Gender: {tutor.gender}</p>
-      <p>Subjects: {tutor.subjects.join(", ")}</p>
+      <p>Subjects: {tutor.subjects}</p>
       <div>
         <Schedule></Schedule>
       </div>
