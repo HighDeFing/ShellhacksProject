@@ -36,7 +36,7 @@ const CardPage = () => {
           {/* Image (if available) */}
           {course.image_url && (
             <img
-              src={`/public/images/${course.image_url}`}
+              src={`/public/${course.image_url}`}
               alt={course.name}
               className="mb-6 h-64 w-full rounded-lg object-cover shadow-md"
             />
