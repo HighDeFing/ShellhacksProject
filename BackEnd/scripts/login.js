@@ -85,7 +85,7 @@ router.post("/signup", async (req, res) => {
     });
   }
   
-  return res.status(200).send(record);
+  return res.status(201).send(record);
 });
 
 export default router;
