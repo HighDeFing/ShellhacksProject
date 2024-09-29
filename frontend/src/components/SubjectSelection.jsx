@@ -7,14 +7,39 @@ import {
   FaDraftingCompass,
 } from "react-icons/fa";
 
-const SubjectSelection = () => {
-  // Map the courses to their corresponding icons
+const SubjectSelection = ({ setSelectedSubject }) => {
+  // Map the courses to their corresponding icons and colors
   const subjects = [
-    { name: "Mathematics", icon: FaCalculator },
-    { name: "Chemistry", icon: FaFlask },
-    { name: "Computer Science", icon: FaLaptopCode },
-    { name: "Health", icon: FaHeartbeat },
-    { name: "Architecture", icon: FaDraftingCompass },
+    {
+      name: "Mathematics",
+      icon: FaCalculator,
+      bgColor: "bg-green-500",
+      hoverColor: "hover:bg-green-700",
+    },
+    {
+      name: "Chemistry",
+      icon: FaFlask,
+      bgColor: "bg-yellow-500",
+      hoverColor: "hover:bg-yellow-700",
+    },
+    {
+      name: "Computer Science",
+      icon: FaLaptopCode,
+      bgColor: "bg-blue-500",
+      hoverColor: "hover:bg-blue-700",
+    },
+    {
+      name: "Health",
+      icon: FaHeartbeat,
+      bgColor: "bg-red-500",
+      hoverColor: "hover:bg-red-700",
+    },
+    {
+      name: "Architecture",
+      icon: FaDraftingCompass,
+      bgColor: "bg-purple-500",
+      hoverColor: "hover:bg-purple-700",
+    },
   ];
 
   return (
@@ -22,11 +47,14 @@ const SubjectSelection = () => {
       {subjects.map((subject) => (
         <div
           key={subject.name}
-          className="course-tag flex items-center gap-2 rounded-lg border-2 border-black p-3"
+          onClick={() => {
+            console.log(`Selected subject: ${subject.name}`);
+            setSelectedSubject(subject.name); // Set the selected subject
+          }}
+          className={`course-tag flex cursor-pointer items-center gap-2 rounded-lg border-2 border-black p-3 text-white ${subject.bgColor} ${subject.hoverColor} transition-colors duration-300`}
         >
-          <subject.icon className="text-2xl" /> {/* Icon size */}
-          <span className="text-lg font-medium">{subject.name}</span>{" "}
-          {/* Subject text */}
+          <subject.icon className="text-2xl" />
+          <span className="text-lg font-medium">{subject.name}</span>
         </div>
       ))}
     </div>
