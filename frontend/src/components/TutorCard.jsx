@@ -55,19 +55,31 @@ const TutorCard = () => {
     }
 
     if (selectedSchedule && student) {
-        const newAppointment = {
+        const newAppointmentForStudent = {
             date: selectedSchedule,
             tutor_id: tutor.id, // Ensure this is the correct ID
             courses: courseId, // Ensure this is the correct ID
             subject: tutor.subject
         };
 
-        const updatedAppointments = [...student.appointments, newAppointment];
+        const newAppointmentForTutor = {
+            date: selectedSchedule,
+            student_id: student.id, // Ensure this is the correct ID
+            courses: courseId, // Ensure this is the correct ID
+            subject: tutor.subject
+        };
+
+        const updatedStudentAppointments = [...student.appointments, newAppointmentForStudent];
+        const updatedTutorAppointments = [...tutor.appointments, newAppointmentForTutor];
+
         const { _id, ...studentWithoutId } = student; // Exclude _id from the student object
-        const updatedStudent = { ...studentWithoutId, appointments: updatedAppointments };
+        const updatedStudent = { ...studentWithoutId, appointments: updatedStudentAppointments };
+
+        const { id, ...tutorWithoutId } = tutor; // Exclude id from the tutor object
+        const updatedTutor = { ...tutorWithoutId, appointments: updatedTutorAppointments };
 
         try {
-            const response = await fetch(`http://localhost:3000/api/students/update/${student._id}`, {
+            const studentResponse = await fetch(`http://localhost:3000/api/students/update/${student._id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -75,17 +87,28 @@ const TutorCard = () => {
                 body: JSON.stringify(updatedStudent)
             });
 
-            if (response.ok) {
+            const tutorResponse = await fetch(`http://localhost:3000/api/tutors/update/${tutor.id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(updatedTutor)
+            });
+
+            if (studentResponse.ok && tutorResponse.ok) {
                 setStudent(updatedStudent);
+                setTutor(updatedTutor);
                 alert(`Appointment scheduled on ${selectedSchedule}`);
             } else {
-                const errorData = await response.json();
-                console.error("Failed to update student appointments:", errorData);
-                alert("Failed to update student appointments.");
+                const studentErrorData = await studentResponse.json();
+                const tutorErrorData = await tutorResponse.json();
+                console.error("Failed to update student appointments:", studentErrorData);
+                console.error("Failed to update tutor appointments:", tutorErrorData);
+                alert("Failed to update appointments.");
             }
         } catch (error) {
-            console.error("Error updating student appointments:", error);
-            alert("Error updating student appointments.");
+            console.error("Error updating appointments:", error);
+            alert("Error updating appointments.");
         }
     } else {
         alert("Please select a day.");
