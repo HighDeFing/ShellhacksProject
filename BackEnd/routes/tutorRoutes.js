@@ -63,4 +63,17 @@ router.get('/readcourse/:id', async (req, res) => {
   }
 });
 
+router.get('/readeasy/:id', async (req, res) => {
+  const easyId = req.params.id;
+  try {
+    const tutor = await tutorCollection.findOne({ id: parseInt(easyId, 10) });
+    if (!tutor) {
+      return res.status(404).json({ message: 'Course not found' });
+    }
+    res.send(tutor);
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 export default router;

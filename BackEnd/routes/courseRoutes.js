@@ -1,7 +1,7 @@
 import express from 'express';
 import { createCourse, readCourses, updateCourse, deleteCourse } from '../scripts/crud.js';
 import { ObjectId } from 'mongodb';
-import { coursesCollection } from '../../DataBase/config/db.js';
+import {coursesCollection, tutorCollection} from '../../DataBase/config/db.js';
 
 const router = express.Router();
 
@@ -41,6 +41,19 @@ router.delete('/delete/:id', async (req, res) => {
     const id = req.params.id;
     const result = await deleteCourse(id);
     res.send(result);
+});
+
+router.get('/readeasy/:id', async (req, res) => {
+  const easyId = req.params.id;
+  try {
+    const course = await coursesCollection.findOne({ id: parseInt(easyId, 10) });
+    if (!course) {
+      return res.status(404).json({ message: 'Course not found' });
+    }
+    res.send(course);
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
 });
 
 export default router;

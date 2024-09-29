@@ -67,6 +67,7 @@ const Profile = () => {
                 <p className="text-lg text-gray-500">{userData.email}</p>
                 <p className="text-lg text-gray-500">{userData.phone}</p>
                 <p className="text-lg text-gray-500">Gender: {userData.gender}</p>
+                <p className="text-lg text-gray-500">Role: {userData.role}</p> {/* Added role */}
               </div>
             </div>
 
