@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Schedule from "./Schedule.jsx";
 import { IoMdExit } from "react-icons/io";
 import TutorList from "./TutorList.jsx";
-// import TeamTable from "./TeamTable.jsx"; // If needed
 
 const CardPage = () => {
   const { id } = useParams(); // Get the course id from the URL
@@ -23,15 +22,17 @@ const CardPage = () => {
 
   return (
     <div className="flex h-auto w-full items-center justify-center py-10">
-      <div className="flex h-full w-full max-w-screen-xl rounded-lg border-2 border-gray-300 bg-white shadow-lg">
+      <div className="relative flex h-full w-full max-w-screen-xl rounded-lg border-2 border-gray-300 bg-white shadow-lg">
+        {/* IoMdExit absolute in the top left */}
+        <Link to="/" className="absolute left-3 top-3">
+          <IoMdExit className="text-3xl text-gray-600 hover:text-gray-800" />
+        </Link>
+
         {/* Left Section */}
-        <div className="w-1/2 p-8">
-          <div className="mb-4 flex items-center">
-            <Link to="/" className="mr-3">
-              <IoMdExit className="text-3xl text-gray-600 hover:text-gray-800" />
-            </Link>
-            <h1 className="text-5xl font-bold text-gray-800">{course.name}</h1>
-          </div>
+        <div className="w-1/2 px-12 py-6">
+          <h1 className="font-newfrank mb-4 text-5xl font-bold text-gray-800">
+            {course.name}
+          </h1>
           {/* Image (if available) */}
           {course.image_url && (
             <img
@@ -42,7 +43,7 @@ const CardPage = () => {
           )}
           {/* Course Description */}
           <div className="mb-6 rounded-lg border border-gray-200 bg-gray-50 p-6 shadow-sm">
-            <h2 className="mb-4 text-2xl font-semibold text-gray-700">
+            <h2 className="font-newfrank mb-4 text-2xl font-semibold text-gray-700">
               Course Description
             </h2>
             <p className="text-lg leading-relaxed text-gray-600">
@@ -52,13 +53,11 @@ const CardPage = () => {
         </div>
 
         {/* Right Section */}
-        <div className="w-1/2 border-l-2 border-gray-200 p-8">
+        <div className="w-1/2 border-l-2 border-gray-200">
           {/* Tutor List */}
           <div className="mb-6">
             <TutorList courseTutorsId={course.tutors_id} />
           </div>
-          {/* Optional: Add more content like a schedule, team table, etc. */}
-          {/* <Schedule /> */}
         </div>
       </div>
     </div>
