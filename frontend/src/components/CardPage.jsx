@@ -8,7 +8,7 @@ const CardPage = () => {
 
   // Fetch the course data using the course id
   useEffect(() => {
-    fetch(`http://localhost:3000/api/subjects/read/${id}`)
+    fetch(`http://localhost:3000/api/courses/read/${id}`)
       .then((response) => response.json())
       .then((data) => setCourse(data))
       .catch((error) => console.error("Error fetching course:", error));
