@@ -44,8 +44,10 @@ router.post("/login", async (req, res) => {
 });
 
 // Sign up route
-router.post("signup", async (req, res) => {
+router.post("/signup", async (req, res) => {
   const { email, password, role } = req.body;
+
+  let record = {};
 
   const errors = [];
   const passwordRegex =
@@ -71,17 +73,19 @@ router.post("signup", async (req, res) => {
     return res.status(400).json({ errors });
   }
 
-  if (role === student) {
-    return createStudent({
-      email,
-      password,
+  if (role === "student") {
+    record = await createStudent({
+        email,
+        password
     });
   } else {
-    return createTutor({
-      email,
-      password,
+    record = await createTeacher({
+        email,
+        password
     });
   }
+  
+  return res.status(200).send(record);
 });
 
 export default router;
