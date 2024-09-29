@@ -76,9 +76,9 @@ const TutorCard = () => {
 
   return (
     <div className="flex h-auto w-full items-center justify-center py-10">
-      <div className="flex h-full w-full max-w-screen-2xl rounded-lg border-2 border-gray-300 bg-white shadow-lg">
+      <div className="flex h-full w-1/2 max-w-screen-2xl rounded-lg border-2 border-gray-300 bg-white shadow-lg">
         {/* Left Section */}
-        <div className="w-1/2 p-8">
+        <div className="w-full p-8">
           <div className="mb-4 flex items-center">
             <Link to="/" className="mr-3">
               <IoMdExit className="text-3xl text-gray-600 hover:text-gray-800" />
@@ -90,6 +90,9 @@ const TutorCard = () => {
             <p className="text-lg text-gray-600">Phone: {tutor.phone}</p>
             <p className="text-lg text-gray-600">Gender: {tutor.gender}</p>
             <p className="text-lg text-gray-600">Role: {tutor.role}</p>
+          </div>
+
+          <div className="mb-6 rounded-lg border border-gray-200 bg-gray-50 p-6 shadow-sm">
             <p className="text-lg text-gray-600">Available Schedule:</p>
             <select
               value={selectedSchedule}
