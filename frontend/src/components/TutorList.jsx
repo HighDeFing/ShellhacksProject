@@ -28,8 +28,8 @@ const TutorList = ({ courseTutorsId }) => {
 
   return (
     <div>
-      <div className="flex h-16 items-center justify-center border-b-4 border-black bg-gray-100">
-        <h1 className="font-newfrank flex w-full justify-start px-4 text-3xl font-bold">
+      <div className="bg-fiu-blue flex h-24 w-full items-center justify-center border-b-4 border-black">
+        <h1 className="font-newfrank flex w-full justify-start px-4 py-6 text-4xl font-normal text-white">
           Select a Tutor Below
         </h1>
       </div>
@@ -45,7 +45,7 @@ const TutorList = ({ courseTutorsId }) => {
                 <li className="font-newfrank w-[15ch] font-bold">
                   {tutor.name}
                 </li>
-                <li>{tutor.email}</li>
+                <li className="font-newfrank font-light">{tutor.email}</li>
               </div>
             </Link>
           ))

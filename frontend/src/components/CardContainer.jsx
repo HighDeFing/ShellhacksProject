@@ -7,6 +7,14 @@ import { FaSearch } from "react-icons/fa";
 const CardContainer = ({ searchQuery }) => {
   const [courses, setCourses] = useState([]); // Stores all courses
   const [selectedSubject, setSelectedSubject] = useState(null); // Stores the selected subject
+  const [authToken, setAuthToken] = useState(null); // Track user authentication
+  const [popupMessage, setPopupMessage] = useState(""); // Track if the popup should show
+
+  // Check for authentication when component loads
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    setAuthToken(token);
+  }, []);
 
   useEffect(() => {
     fetch("http://localhost:3000/api/courses/read")
@@ -15,6 +23,14 @@ const CardContainer = ({ searchQuery }) => {
         setCourses(data);
       });
   }, []);
+
+  // Handle clicking on course card
+  const handleCourseClick = (e) => {
+    if (!authToken) {
+      e.preventDefault(); // Prevent navigating to the course page
+      setPopupMessage("You must sign up or login first!"); // Show popup message
+    }
+  };
 
   // Filter the courses by selected subject and search query
   const filteredCourses = courses.filter((course) => {
@@ -33,8 +49,15 @@ const CardContainer = ({ searchQuery }) => {
         {/* Pass the subject selection handler */}
         <SubjectSelection setSelectedSubject={setSelectedSubject} />
       </div>
+      {popupMessage && (
+        <div className="mb-4 rounded-lg bg-red-500 p-4 text-center text-white">
+          {popupMessage}
+        </div>
+      )}
 
       <div className="mx-auto w-full max-w-screen-xl">
+        {/* Display popup message if user isn't authenticated */}
+
         {/* Check if no courses or if there are few results */}
         {filteredCourses.length === 0 ? (
           <div className="flex h-96 flex-col items-center justify-center">
@@ -49,7 +72,11 @@ const CardContainer = ({ searchQuery }) => {
         ) : (
           <div className="grid min-h-[400px] w-full grid-cols-5 place-content-center gap-6 px-1 pb-7 pt-7">
             {filteredCourses.map((course) => (
-              <Link to={`/course/${course._id}`} key={course._id}>
+              <Link
+                to={`/course/${course._id}`}
+                key={course._id}
+                onClick={handleCourseClick} // Prevent access if not authenticated
+              >
                 <CourseCard
                   className="flex w-full items-center justify-center"
                   course={course}
