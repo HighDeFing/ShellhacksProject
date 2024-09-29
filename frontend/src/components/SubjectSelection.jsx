@@ -43,7 +43,7 @@ const SubjectSelection = ({ setSelectedSubject }) => {
   ];
 
   return (
-    <div className="flex w-full items-center justify-center space-x-3 border-2 py-5">
+    <div className="flex w-full items-center justify-center space-x-3 py-5">
       {/* Reset Button */}
       <div
         onClick={() => {
