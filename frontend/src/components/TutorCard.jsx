@@ -1,13 +1,19 @@
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { IoMdExit } from "react-icons/io";
+import Cookies from "js-cookie";
 
 const TutorCard = () => {
     const { id } = useParams();
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const courseId = queryParams.get("courseId");
+
     const [tutor, setTutor] = useState(null);
     const [selectedSchedule, setSelectedSchedule] = useState("");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [student, setStudent] = useState(null);
 
     useEffect(() => {
         const fetchTutorData = async () => {
@@ -20,13 +26,22 @@ const TutorCard = () => {
             }
         };
 
-        fetchTutorData();
+        const fetchStudentData = async () => {
+            const sessionId = Cookies.get("sessionId");
+            if (sessionId) {
+                setIsLoggedIn(true);
+                try {
+                    const response = await fetch(`http://localhost:3000/api/students/read/${sessionId}`);
+                    const data = await response.json();
+                    setStudent(data);
+                } catch (error) {
+                    console.error("Error fetching student data:", error);
+                }
+            }
+        };
 
-        // Check if the user is logged in
-        const token = localStorage.getItem("authToken");
-        if (token) {
-            setIsLoggedIn(true);
-        }
+        fetchTutorData();
+        fetchStudentData();
     }, [id]);
 
     const handleScheduleChange = (event) => {
@@ -39,32 +54,35 @@ const TutorCard = () => {
             return;
         }
 
-        if (selectedSchedule) {
-            const updatedScheduleAvailable = tutor.schedule_available.filter(day => day !== selectedSchedule);
-            const updatedScheduleTaken = [...tutor.schedule_taken, selectedSchedule];
+        if (selectedSchedule && student) {
+            const newAppointment = {
+                date: selectedSchedule,
+                tutor_id: tutor._id,
+                courses: courseId, // Use the courseId from the query parameter
+                subject: tutor.subject
+            };
 
-            // Create a copy of the tutor object without the _id field
-            const { _id, ...tutorWithoutId } = tutor;
-            const updatedTutor = { ...tutorWithoutId, schedule_available: updatedScheduleAvailable, schedule_taken: updatedScheduleTaken };
+            const updatedAppointments = [...student.appointments, newAppointment];
+            const updatedStudent = { ...student, appointments: updatedAppointments };
 
             try {
-                const response = await fetch(`http://localhost:3000/api/tutors/update/${id}`, {
+                const response = await fetch(`http://localhost:3000/api/students/update/${student._id}`, {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify(updatedTutor)
+                    body: JSON.stringify(updatedStudent)
                 });
 
                 if (response.ok) {
-                    setTutor(updatedTutor);
+                    setStudent(updatedStudent);
                     alert(`Appointment scheduled on ${selectedSchedule}`);
                 } else {
-                    alert("Failed to update schedule.");
+                    alert("Failed to update student appointments.");
                 }
             } catch (error) {
-                console.error("Error updating schedule:", error);
-                alert("Error updating schedule.");
+                console.error("Error updating student appointments:", error);
+                alert("Error updating student appointments.");
             }
         } else {
             alert("Please select a day.");
@@ -78,7 +96,6 @@ const TutorCard = () => {
     return (
         <div className="flex h-auto w-full items-center justify-center py-10">
             <div className="flex h-full w-full max-w-screen-2xl rounded-lg border-2 border-gray-300 bg-white shadow-lg">
-                {/* Left Section */}
                 <div className="w-1/2 p-8">
                     <div className="mb-4 flex items-center">
                         <Link to="/" className="mr-3">

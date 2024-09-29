@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Schedule from "./Schedule.jsx";
 import { IoMdExit } from "react-icons/io";
 import TutorList from "./TutorList.jsx";
-// import TeamTable from "./TeamTable.jsx"; // If needed
 
 const CardPage = () => {
   const { id } = useParams(); // Get the course id from the URL
@@ -55,7 +54,7 @@ const CardPage = () => {
         <div className="w-1/2 border-l-2 border-gray-200 p-8">
           {/* Tutor List */}
           <div className="mb-6">
-            <TutorList courseTutorsId={course.tutors_id} />
+            <TutorList courseTutorsId={course.tutors_id} courseId={id} />
           </div>
           {/* Optional: Add more content like a schedule, team table, etc. */}
           {/* <Schedule /> */}
