@@ -59,7 +59,7 @@ const SearchBar = ({ onSearch, isModalOpen }) => {
       }}
     >
       <div
-        className="mx-auto box-border flex h-14 items-center justify-center rounded-lg border-2 border-black bg-white transition-all duration-200 ease-in-out"
+        className="mx-auto box-border flex h-14 max-w-screen-xl items-center justify-center rounded-lg border-2 border-black bg-white transition-all duration-200 ease-in-out"
         style={{
           paddingLeft: calculatePadding(),
           paddingRight: calculatePadding(),
@@ -71,7 +71,7 @@ const SearchBar = ({ onSearch, isModalOpen }) => {
           type="text"
           id="course-search"
           placeholder="Search Courses"
-          className="font-newfrank h-full w-full border-none bg-white pl-2 text-lg font-light text-black placeholder-black placeholder-opacity-70 outline-none"
+          className="h-full w-full border-none bg-white pl-2 font-newfrank text-lg font-light text-black placeholder-black placeholder-opacity-70 outline-none"
           value={query}
           onChange={handleInputChange}
         />
