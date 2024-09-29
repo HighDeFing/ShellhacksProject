@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Schedule from "./Schedule.jsx";
+import { Link } from "react-router-dom";
+import { IoMdExit } from "react-icons/io";
 
 const TutorCard = () => {
     const { id } = useParams();
@@ -63,22 +64,43 @@ const TutorCard = () => {
     }
 
     return (
-        <div className="card h-60 w-48 rounded-md border-2 border-black p-4">
-            <h5 className="font-bold">{tutor.name}</h5>
-            <p>Email: {tutor.email}</p>
-            <p>Phone: {tutor.phone}</p>
-            <p>Gender: {tutor.gender}</p>
-            <p>Role: {tutor.role}</p>
-            <p>Available Schedule:</p>
-            <select value={selectedSchedule} onChange={handleScheduleChange}>
-                <option value="">--Select a day--</option>
-                {Array.isArray(tutor.schedule_available) ? tutor.schedule_available.map((day) => (
-                    <option key={day} value={day}>
-                        {day}
-                    </option>
-                )) : null}
-            </select>
-            <button onClick={handleSubmit}>Confirm Appointment</button>
+        <div className="flex h-auto w-full items-center justify-center py-10">
+            <div className="flex h-full w-full max-w-screen-2xl rounded-lg border-2 border-gray-300 bg-white shadow-lg">
+                {/* Left Section */}
+                <div className="w-1/2 p-8">
+                    <div className="mb-4 flex items-center">
+                        <Link to="/" className="mr-3">
+                            <IoMdExit className="text-3xl text-gray-600 hover:text-gray-800" />
+                        </Link>
+                        <h1 className="text-5xl font-bold text-gray-800">{tutor.name}</h1>
+                    </div>
+                    <div className="mb-6 rounded-lg border border-gray-200 bg-gray-50 p-6 shadow-sm">
+                        <p className="text-lg text-gray-600">Email: {tutor.email}</p>
+                        <p className="text-lg text-gray-600">Phone: {tutor.phone}</p>
+                        <p className="text-lg text-gray-600">Gender: {tutor.gender}</p>
+                        <p className="text-lg text-gray-600">Role: {tutor.role}</p>
+                        <p className="text-lg text-gray-600">Available Schedule:</p>
+                        <select
+                            value={selectedSchedule}
+                            onChange={handleScheduleChange}
+                            className="mt-2 w-full rounded-md border border-gray-300 p-2"
+                        >
+                            <option value="">--Select a day--</option>
+                            {Array.isArray(tutor.schedule_available) ? tutor.schedule_available.map((day) => (
+                                <option key={day} value={day}>
+                                    {day}
+                                </option>
+                            )) : null}
+                        </select>
+                        <button
+                            onClick={handleSubmit}
+                            className="mt-4 w-full rounded-md bg-blue-500 p-2 text-white hover:bg-blue-600"
+                        >
+                            Confirm Appointment
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
