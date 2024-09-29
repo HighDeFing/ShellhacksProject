@@ -8,7 +8,7 @@ import {
 } from "react-icons/fa";
 
 const SubjectSelection = () => {
-  // Map the subjects to their corresponding icons
+  // Map the courses to their corresponding icons
   const subjects = [
     { name: "Mathematics", icon: FaCalculator },
     { name: "Chemistry", icon: FaFlask },

@@ -25,7 +25,7 @@ const TutorList = () => {
             <li>{tutor.name}</li>
             <li>{tutor.phone}</li>
             <li>{tutor.gender}</li>
-            <li>{tutor.subjects}</li>
+            <li>{tutor.courses}</li>
             <button onClick={() => handleButtonClick(tutor._id)}>
               Pick Me!
             </button>

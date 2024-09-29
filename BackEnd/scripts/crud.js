@@ -2,7 +2,7 @@ import { ObjectId } from "mongodb";
 import {
   tutorCollection,
   studentCollection,
-  subjectCollection,
+  coursesCollection,
 } from "../../DataBase/config/db.js";
 import bcrypt from "bcrypt";
 
@@ -89,32 +89,32 @@ export const deleteTutor = async (id) => {
 };
 
 // Function to create subject record
-export const createSubject = async (subject) => {
-  const result = await subjectCollection.insertOne(subject);
-  const newSubject = await subjectCollection.findOne({
+export const createCourse = async (course) => {
+  const result = await coursesCollection.insertOne(course);
+  const newCourse = await coursesCollection.findOne({
     _id: result.insertedId,
   });
-  return newSubject;
+  return newCourse;
 };
 
 // Function to get subjects
-export const readSubjects = async () => {
-  return await subjectCollection.find({}).toArray();
+export const readCourses = async () => {
+  return await coursesCollection.find({}).toArray();
 };
 
 // Function to update subject record
-export const updateSubject = async (id, subject) => {
+export const updateCourse = async (id, course) => {
   const objectId = new ObjectId(id);
-  const updatedSubject = await subjectCollection.updateOne(
+  const updatedCourse = await coursesCollection.updateOne(
       { _id: objectId },
-      { $set: subject }
+      { $set: course }
   );
-  return updatedSubject;
+  return updatedCourse;
 };
 
 // Function to delete subject record
-export const deleteSubject = async (id) => {
+export const deleteCourse = async (id) => {
   const objectId = new ObjectId(id);
-  const deletedSubject = await subjectCollection.deleteOne({ _id: objectId });
-  return deletedSubject;
+  const deletedCourse = await coursesCollection.deleteOne({ _id: objectId });
+  return deletedCourse;
 };

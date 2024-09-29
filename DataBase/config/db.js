@@ -29,7 +29,7 @@ const client = new MongoClient(uri, {
 let tutorCollection;
 let studentCollection;
 
-let subjectCollection;
+let coursesCollection;
 
 // Function will return a database object
 const connectToDatabase = async () => {
@@ -75,16 +75,16 @@ const addDummyData = async (db) => {
   try {
     tutorCollection = db.collection("Tutor");
     studentCollection = db.collection("Student");
-    subjectCollection = db.collection("Subject");
+    coursesCollection = db.collection("Courses");
 
-    const subjectCount = await subjectCollection.countDocuments();
-    if (subjectCount === 0) {
-      const subjectsFilePath = path.join(__dirname, "../data", "subjects.json");
-      const subjectsData = JSON.parse(fs.readFileSync(subjectsFilePath, "utf8"));
-      await subjectCollection.insertMany(subjectsData);
-      console.log("Subject data inserted successfully");
+    const courseCount = await coursesCollection.countDocuments();
+    if (courseCount === 0) {
+      const coursesFilePath = path.join(__dirname, "../data", "courses.json");
+      const courseData = JSON.parse(fs.readFileSync(coursesFilePath, "utf8"));
+      await coursesCollection.insertMany(courseData);
+      console.log("Course data inserted successfully");
     } else {
-      console.log("Subject collection is not empty");
+      console.log("Crouse collection is not empty");
     }
 
     const studentCount = await studentCollection.countDocuments();
@@ -126,8 +126,8 @@ const initCollections = async () => {
   const db = await connectToDatabase();
   await createCollection(db, "Tutor");
   await createCollection(db, "Student");
-  await createCollection(db, "Subject");
+  await createCollection(db, "Courses");
   await addDummyData(db);
 };
 
-export { initCollections, tutorCollection, studentCollection, subjectCollection };
+export { initCollections, tutorCollection, studentCollection, coursesCollection };

@@ -6,7 +6,7 @@ import {
   deleteTutor,
 } from "../scripts/crud.js";
 import { tutorCollection } from "../../DataBase/config/db.js";
-import { subjectCollection } from "../../DataBase/config/db.js";
+import { coursesCollection } from "../../DataBase/config/db.js";
 import { ObjectId } from "mongodb";
 
 const router = express.Router();
@@ -48,15 +48,15 @@ router.delete("/delete/:id", async (req, res) => {
   res.send(result);
 });
 
-router.get('/readsubject/:id', async (req, res) => {
-  const subjectId = req.params.id;
+router.get('/readcourse/:id', async (req, res) => {
+  const courseId = req.params.id;
   try {
-    const subject = await subjectCollection.findOne({ id: parseInt(subjectId, 10) });
-    if (!subject) {
-      return res.status(404).json({ message: 'Subject not found' });
+    const course = await coursesCollection.findOne({ id: parseInt(courseId, 10) });
+    if (!course) {
+      return res.status(404).json({ message: 'Course not found' });
     }
 
-    const tutors = await tutorCollection.find({ subject_id: { $in: [subject.id] } }).toArray();
+    const tutors = await tutorCollection.find({ course_id: { $in: [course.id] } }).toArray();
     res.send(tutors);
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });
