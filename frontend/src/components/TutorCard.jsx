@@ -7,6 +7,7 @@ const TutorCard = () => {
     const { id } = useParams();
     const [tutor, setTutor] = useState(null);
     const [selectedSchedule, setSelectedSchedule] = useState("");
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
         const fetchTutorData = async () => {
@@ -20,6 +21,12 @@ const TutorCard = () => {
         };
 
         fetchTutorData();
+
+        // Check if the user is logged in
+        const token = localStorage.getItem("authToken");
+        if (token) {
+            setIsLoggedIn(true);
+        }
     }, [id]);
 
     const handleScheduleChange = (event) => {
@@ -27,6 +34,11 @@ const TutorCard = () => {
     };
 
     const handleSubmit = async () => {
+        if (!isLoggedIn) {
+            alert("You must be logged in to schedule an appointment.");
+            return;
+        }
+
         if (selectedSchedule) {
             const updatedScheduleAvailable = tutor.schedule_available.filter(day => day !== selectedSchedule);
             const updatedScheduleTaken = [...tutor.schedule_taken, selectedSchedule];
