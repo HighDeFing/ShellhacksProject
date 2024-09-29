@@ -10,7 +10,7 @@
         "schedule_available": ["Mon", "Wed", "Fri"],
         "schedule_taken": ["Tue", "Thu"],
         "role": "tutor",
-        "password": "",
+        "password": "password789",
         "appointments": [{
             "date": "Mon",
             "student_id": 1,
