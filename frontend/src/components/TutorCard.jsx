@@ -71,7 +71,13 @@ const TutorCard = () => {
   };
 
   if (!tutor) {
-    return <div>Loading...</div>;
+    return (
+      <div className="mt-72 flex h-auto w-full items-center justify-center py-10">
+        <p className="font-newfrank animate-pulse text-9xl font-extrabold text-gray-500">
+          Loading...
+        </p>
+      </div>
+    );
   }
 
   return (
@@ -86,6 +92,9 @@ const TutorCard = () => {
             <h1 className="text-5xl font-bold text-gray-800">{tutor.name}</h1>
           </div>
           <div className="mb-6 rounded-lg border border-gray-200 bg-gray-50 p-6 shadow-sm">
+            <h2 className="font-newfrank mb-4 text-2xl font-semibold text-gray-700">
+              Tutor Details
+            </h2>
             <p className="text-lg text-gray-600">Email: {tutor.email}</p>
             <p className="text-lg text-gray-600">Phone: {tutor.phone}</p>
             <p className="text-lg text-gray-600">Gender: {tutor.gender}</p>
@@ -93,27 +102,31 @@ const TutorCard = () => {
           </div>
 
           <div className="mb-6 rounded-lg border border-gray-200 bg-gray-50 p-6 shadow-sm">
-            <p className="text-lg text-gray-600">Available Schedule:</p>
-            <select
-              value={selectedSchedule}
-              onChange={handleScheduleChange}
-              className="mt-2 w-full rounded-md border border-gray-300 p-2"
-            >
-              <option value="">--Select a day--</option>
-              {Array.isArray(tutor.schedule_available)
-                ? tutor.schedule_available.map((day) => (
-                    <option key={day} value={day}>
-                      {day}
-                    </option>
-                  ))
-                : null}
-            </select>
-            <button
-              onClick={handleSubmit}
-              className="mt-4 w-full rounded-md bg-blue-500 p-2 text-white hover:bg-blue-600"
-            >
-              Confirm Appointment
-            </button>
+            <p className="font-newfrank mb-4 text-2xl font-semibold text-gray-700">
+              Available Schedule:
+            </p>
+            <div className="flex items-center justify-center gap-2">
+              <select
+                value={selectedSchedule}
+                onChange={handleScheduleChange}
+                className="flex h-14 w-full items-center justify-center rounded-md border border-gray-300 p-2"
+              >
+                <option value="">--Select a day--</option>
+                {Array.isArray(tutor.schedule_available)
+                  ? tutor.schedule_available.map((day) => (
+                      <option key={day} value={day}>
+                        {day}
+                      </option>
+                    ))
+                  : null}
+              </select>
+              <button
+                onClick={handleSubmit}
+                className="font-newfrank flex h-[59px] w-full cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-white bg-green-500 px-14 py-5 font-semibold text-white transition-colors duration-300 hover:bg-green-700"
+              >
+                Confirm Appointment
+              </button>
+            </div>
           </div>
         </div>
       </div>
