@@ -79,7 +79,7 @@ router.post("/signup", async (req, res) => {
         password
     });
   } else {
-    record = await createTeacher({
+    record = await createTutor({
         email,
         password
     });
