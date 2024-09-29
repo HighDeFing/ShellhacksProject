@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import CourseCard from "./CourseCard";
-import CourseSelection from "./CourseSelection.jsx";
+import SubjectSelection from "./SubjectSelection";
 import { useState, useEffect } from "react";
 
 const CardContainer = () => {
@@ -11,6 +11,8 @@ const CardContainer = () => {
       .then((response) => response.json())
       .then((data) => setCourse(data));
   }, []);
+
+  console.log(course);
 
   return (
     <div className="flex h-auto w-full justify-center">
