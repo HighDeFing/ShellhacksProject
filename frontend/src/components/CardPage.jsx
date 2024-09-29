@@ -19,7 +19,7 @@ const CardPage = () => {
   if (!course) {
     return (
       <div className="mt-72 flex h-auto w-full items-center justify-center py-10">
-        <p className="font-newfrank animate-pulse text-9xl font-extrabold text-gray-500">
+        <p className="animate-pulse font-newfrank text-9xl font-extrabold text-gray-500">
           Loading...
         </p>
       </div>
@@ -36,20 +36,20 @@ const CardPage = () => {
 
         {/* Left Section */}
         <div className="w-1/2 px-12 py-6">
-          <h1 className="font-newfrank mb-4 text-5xl font-bold text-gray-800">
+          <h1 className="mb-4 font-newfrank text-5xl font-bold text-gray-800">
             {course.name}
           </h1>
           {/* Image (if available) */}
           {course.image_url && (
             <img
-              src={`/public/${course.image_url}`}
+              src={`/public/images/${course.image_url}`}
               alt={course.name}
               className="mb-6 h-64 w-full rounded-lg object-cover shadow-md"
             />
           )}
           {/* Course Description */}
           <div className="mb-6 rounded-lg border border-gray-200 bg-gray-50 p-6 shadow-sm">
-            <h2 className="font-newfrank mb-4 text-2xl font-semibold text-gray-700">
+            <h2 className="mb-4 font-newfrank text-2xl font-semibold text-gray-700">
               Course Description
             </h2>
             <p className="text-lg leading-relaxed text-gray-600">
