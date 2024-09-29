@@ -7,7 +7,10 @@ const Appointments = ({ role, appointments }) => {
 
     const fetchTutorDetails = async (tutorId) => {
         try {
-            const response = await fetch(`http://localhost:3000/api/tutors/readeasy/${tutorId}`);
+            let response = await fetch(`http://localhost:3000/api/tutors/readeasy/${tutorId}`);
+            if (response.status === 404) {
+                response = await fetch(`http://localhost:3000/api/tutors/read/${tutorId}`);
+            }
             if (response.ok) {
                 const data = await response.json();
                 setTutors(prevTutors => ({ ...prevTutors, [tutorId]: data }));
