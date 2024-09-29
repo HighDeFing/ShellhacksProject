@@ -65,7 +65,7 @@ router.post("/login", async (req, res) => {
 
     req.session.studentId = user._id;
 
-    res.json({ token,  user: { id: user._id, email: user.email, role } });
+    res.json({ token, sessionId: req.session.studentId, user: { id: user._id, email: user.email, role } });
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
