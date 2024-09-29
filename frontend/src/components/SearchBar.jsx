@@ -1,45 +1,70 @@
 import { FaSearch } from "react-icons/fa";
 import { useState, useEffect } from "react";
 
-const SearchBar = ({ onSearch }) => {
-  const [isSticky, setIsSticky] = useState(false);
+const SearchBar = ({ onSearch, isModalOpen }) => {
+  const [scrollPos, setScrollPos] = useState(0);
   const [query, setQuery] = useState("");
 
-  // Listen for scroll events
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 80) {
-        setIsSticky(true); // If scrolled more than 50px
-      } else {
-        setIsSticky(false); // If not scrolled enough
-      }
+      setScrollPos(window.scrollY);
     };
 
-    // Add scroll event listener
     window.addEventListener("scroll", handleScroll);
-
-    // Cleanup on unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
-  // Handle search input change
+  const calculateWidth = () => {
+    const minWidth = 550;
+    const maxWidth = window.innerWidth - 161;
+    const range = maxWidth - minWidth;
+    const scrollThreshold = 500;
+
+    const width = Math.max(
+      minWidth,
+      maxWidth - (scrollPos / scrollThreshold) * range
+    );
+    return `${width}px`;
+  };
+
+  const calculatePadding = () => {
+    const minPadding = 11;
+    const maxPadding = 16;
+    const scrollThreshold = 800; // Match this threshold with the width
+
+    const padding = Math.max(
+      minPadding,
+      maxPadding - (scrollPos / scrollThreshold) * (maxPadding - minPadding)
+    );
+    return `${padding}px`;
+  };
+
   const handleInputChange = (e) => {
     setQuery(e.target.value);
-    onSearch(e.target.value); // Pass the query to the parent component
+    onSearch(e.target.value);
   };
+
+  // Toggle z-index and pointer events based on whether the modal is open
+  const searchBarZIndex = isModalOpen ? "-z-10" : "z-10";
+  const pointerEvents = isModalOpen ? "pointer-events-none" : "";
 
   return (
     <div
-      className={`sticky top-0 mx-auto flex items-center justify-center px-3 py-4 transition-all duration-500 ${
-        isSticky ? "mt-1 w-[640px]" : "w-full max-w-screen-xl"
-      }`}
+      className={`sticky top-0 mx-auto py-5 transition-all duration-700 ease-in-out ${searchBarZIndex} ${pointerEvents}`}
+      style={{
+        width: calculateWidth(),
+        pointerEvents: "none",
+      }}
     >
       <div
-        className={`w-s box-border flex h-16 max-w-screen-2xl items-center justify-center rounded-lg border-2 border-black bg-white transition-all duration-300 ${
-          isSticky ? "w-4/5 p-2" : "w-full p-4"
-        }`}
+        className="mx-auto box-border flex h-14 items-center justify-center rounded-lg border-2 border-black bg-white transition-all duration-200 ease-in-out"
+        style={{
+          paddingLeft: calculatePadding(),
+          paddingRight: calculatePadding(),
+          pointerEvents: "auto",
+        }}
       >
         <label className="sr-only">Course Search</label>
         <input

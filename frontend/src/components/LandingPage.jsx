@@ -1,20 +1,23 @@
 import { useState } from "react";
+import { useOutletContext } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import CardContainer from "./CardContainer";
+import HeroSection from "./HeroSection";
 
 const LandingPage = () => {
-  const [searchQuery, setSearchQuery] = useState(""); // State for search query
+  const [searchQuery, setSearchQuery] = useState("");
+  const { isModalOpen, setIsModalOpen } = useOutletContext(); // Access context from App
 
   const handleSearch = (query) => {
-    setSearchQuery(query); // Update the search query when the user types
+    setSearchQuery(query);
   };
 
   return (
     <>
-      <SearchBar onSearch={handleSearch} />{" "}
-      {/* Pass handleSearch to SearchBar */}
-      <CardContainer searchQuery={searchQuery} />{" "}
-      {/* Pass searchQuery to CardContainer */}
+      {/* Pass the isModalOpen state to SearchBar */}
+      <HeroSection />
+      <SearchBar onSearch={handleSearch} isModalOpen={isModalOpen} />
+      <CardContainer searchQuery={searchQuery} />
     </>
   );
 };

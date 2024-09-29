@@ -83,7 +83,7 @@ const LoginForm = ({ role, setIsOpen }) => {
         {role}
       </p>
       <h3 className="mb-1 text-center text-3xl font-bold">
-        Welcome or <i>Welcome Back</i>
+        Welcome or <i className="opacity-50">Welcome Back</i>
       </h3>
 
       {/* Form */}
@@ -128,18 +128,20 @@ const LoginForm = ({ role, setIsOpen }) => {
             <button
               type="submit"
               onClick={handleRegisterSubmit}
-              className="w-full rounded bg-green-500 py-2 font-semibold text-white transition-opacity hover:bg-green-600"
+              className="border-fiu-gold hover:bg-fiu-gold box-content flex w-44 cursor-pointer items-center justify-center gap-2 rounded-lg border-[3px] px-8 py-3 text-white transition-all duration-300 hover:border-[#8e7512] hover:font-bold"
             >
-              Register
+              Sign Up
             </button>
 
             {/* Login Button */}
             <button
               type="submit"
               onClick={handleLoginSubmit}
-              className="w-full rounded bg-white py-2 font-semibold text-indigo-600 transition-opacity hover:opacity-90"
+              className="border-fiu-gold hover:bg-fiu-gold box-content flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg border-[3px] px-8 py-3 text-white transition-all duration-300 hover:border-[#8e7512] hover:font-bold"
             >
-              Login
+              <span className="flex w-full items-center justify-center pr-5">
+                Login
+              </span>
             </button>
           </div>
         </form>

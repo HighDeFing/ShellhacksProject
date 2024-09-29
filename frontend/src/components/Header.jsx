@@ -2,25 +2,19 @@ import { Link } from "react-router-dom";
 import Modal from "./Modal";
 import { useState, useEffect } from "react";
 
-const Header = () => {
+const Header = ({ setIsModalOpen }) => {
   const [authToken, setAuthToken] = useState(null);
 
   useEffect(() => {
-    // Retrieve the stored token from localStorage
     const token = localStorage.getItem("authToken");
     if (token) {
       setAuthToken(token);
-      console.log("Token retrieved from localStorage:", token); // Debugging
     }
   }, []);
 
-  // Handle user logout
   const handleLogout = () => {
-    // Clear the token from localStorage
     localStorage.removeItem("authToken");
-    // Update the authToken state to null
     setAuthToken(null);
-    console.log("User logged out");
   };
 
   return (
@@ -32,29 +26,34 @@ const Header = () => {
           </p>
         </Link>
         <div className="flex space-x-7">
-          {/* If user is logged in, show logout on the left and profile on the right, otherwise show modals */}
           {authToken ? (
             <>
-              {/* Logout button on the left */}
               <button
                 onClick={handleLogout}
-                className="hover:border-b-fiu-gold font-newfrank box-border flex h-12 items-center justify-center border-b-4 border-b-transparent px-4 py-2 text-xl font-medium text-white hover:border-b-4"
+                className="border-fiu-gold hover:bg-fiu-gold z-10 box-content flex cursor-pointer items-center justify-center gap-2 rounded-lg border-[3px] px-8 py-3 text-white transition-all duration-300 hover:border-[#8e7512] hover:font-bold"
               >
-                Logout
+                <p className="w-18">Logout</p>
               </button>
 
-              {/* Profile button on the right */}
               <Link to="/profile">
-                <button className="hover:border-b-fiu-gold font-newfrank box-border flex h-12 items-center justify-center border-b-4 border-b-transparent px-4 py-2 text-xl font-medium text-white hover:border-b-4">
-                  Profile
+                <button className="border-fiu-gold hover:bg-fiu-gold z-10 box-content flex cursor-pointer items-center justify-center gap-2 rounded-lg border-[3px] px-8 py-3 text-white transition-all duration-300 hover:border-[#8e7512] hover:font-bold">
+                  <p className="w-24">Profile</p>
                 </button>
               </Link>
             </>
           ) : (
-            <>
-              <Modal role="student" buttonText="I am a Student" />
-              <Modal role="tutor" buttonText="I am a Tutor" />
-            </>
+            <div className="z-50 flex gap-4">
+              <Modal
+                role="student"
+                buttonText="I am a Student"
+                setIsModalOpen={setIsModalOpen}
+              />
+              <Modal
+                role="tutor"
+                buttonText="I am a Tutor"
+                setIsModalOpen={setIsModalOpen}
+              />
+            </div>
           )}
         </div>
       </div>

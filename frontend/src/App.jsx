@@ -1,18 +1,16 @@
 import { useState } from "react";
-import Header from "./components/Header";
-import SearchBar from "./components/SearchBar";
-import HeroSection from "./components/HeroSection";
-import CardContainer from "./components/CardContainer";
 import { Outlet } from "react-router-dom";
-import LandingPage from "./components/LandingPage";
+import Header from "./components/Header";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Manage modal state in App
 
   return (
-    <div className="flex h-auto w-screen flex-col align-middle">
-      <Header />
-      <Outlet />
+    <div className="app">
+      {/* Pass setIsModalOpen to Header */}
+      <Header setIsModalOpen={setIsModalOpen} />
+      {/* Render children components */}
+      <Outlet context={{ isModalOpen, setIsModalOpen }} />
     </div>
   );
 }

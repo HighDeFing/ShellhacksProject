@@ -3,23 +3,33 @@ import { FiAlertCircle } from "react-icons/fi";
 import { useState } from "react";
 import LoginForm from "./LoginForm";
 
-const Modal = ({ buttonText, role }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Modal = ({ buttonText, role, setIsModalOpen }) => {
+  const [isOpen, setIsOpenState] = useState(false);
+
+  const handleOpen = () => {
+    setIsOpenState(true);
+    setIsModalOpen(true); // Update the state in LandingPage
+  };
+
+  const handleClose = () => {
+    setIsOpenState(false);
+    setIsModalOpen(false); // Update the state in LandingPage
+  };
 
   return (
     <div>
       <button
-        onClick={() => setIsOpen(true)}
-        className="hover:border-b-fiu-gold font-newfrank box-border flex h-12 items-center justify-center border-b-4 border-b-transparent px-4 py-2 text-xl font-medium text-white hover:border-b-4"
+        onClick={handleOpen}
+        className="border-fiu-gold hover:bg-fiu-gold z-10 box-content flex cursor-pointer items-center justify-center gap-2 rounded-lg border-[3px] px-8 py-3 text-white transition-all duration-300 hover:border-[#8e7512] hover:font-bold"
       >
-        {buttonText}
+        <p className="whitespace-nowrap">{buttonText}</p>
       </button>
-      <SpringModal isOpen={isOpen} setIsOpen={setIsOpen} role={role} />
+      <SpringModal isOpen={isOpen} handleClose={handleClose} role={role} />
     </div>
   );
 };
 
-const SpringModal = ({ isOpen, setIsOpen, role }) => {
+const SpringModal = ({ isOpen, handleClose, role }) => {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -27,8 +37,8 @@ const SpringModal = ({ isOpen, setIsOpen, role }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          onClick={() => setIsOpen(false)}
-          className="z-100 fixed inset-0 grid cursor-pointer place-items-center overflow-y-scroll bg-slate-900/30 p-8 backdrop-blur"
+          onClick={handleClose}
+          className="fixed inset-0 z-50 grid cursor-pointer place-items-center overflow-y-scroll bg-slate-900/30 p-8 backdrop-blur"
         >
           <motion.div
             initial={{ scale: 0, rotate: "12.5deg" }}
@@ -39,7 +49,7 @@ const SpringModal = ({ isOpen, setIsOpen, role }) => {
           >
             <FiAlertCircle className="absolute -left-24 -top-24 z-0 rotate-12 text-[250px] text-white/10" />
             <div className="relative z-10">
-              <LoginForm role={role} setIsOpen={setIsOpen} />
+              <LoginForm role={role} setIsOpen={handleClose} />
             </div>
           </motion.div>
         </motion.div>

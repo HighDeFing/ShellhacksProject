@@ -27,11 +27,12 @@ const CardContainer = ({ searchQuery }) => {
   });
 
   return (
-    <div className="flex h-auto w-full justify-center">
-      <div className="w-full max-w-screen-xl">
+    <div className="flex h-auto w-full flex-col justify-center">
+      <div className="w-full">
         {/* Pass the subject selection handler */}
         <SubjectSelection setSelectedSubject={setSelectedSubject} />
-
+      </div>
+      <div className="mx-auto w-full max-w-screen-xl">
         {/* Grid for displaying course cards */}
         <div className="grid w-full grid-cols-5 place-content-center gap-6 px-1 pt-5">
           {filteredCourses.map((course) => (
