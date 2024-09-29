@@ -10,7 +10,13 @@
         "schedule_available": ["Mon", "Wed", "Fri"],
         "schedule_taken": ["Tue", "Thu"],
         "role": "tutor",
-        "password": ""
+        "password": "",
+        "appointments": [{
+            "date": "Mon",
+            "student_id": 1,
+            "courses": 1,
+            "subject": "Math"
+        }]
     },
     {
         "id": 2,
@@ -23,7 +29,13 @@
         "schedule_available": ["Tue", "Thu"],
         "schedule_taken": ["Mon", "Wed", "Fri"],
         "role": "tutor",
-        "password": "password789"
+        "password": "password789",
+        "appointments": [{
+            "date": "Mon",
+            "student_id": 1,
+            "courses": 1,
+            "subject": "Math"
+        }]
     },
     {
         "id": 3,
@@ -36,7 +48,13 @@
         "schedule_available": ["Mon", "Wed", "Fri"],
         "schedule_taken": ["Tue", "Thu"],
         "role": "tutor",
-        "password": "password789"
+        "password": "password789",
+        "appointments": [{
+            "date": "Mon",
+            "student_id": 1,
+            "courses": 1,
+            "subject": "Math"
+        }]
     },
     {
         "id": 4,
@@ -49,6 +67,12 @@
         "schedule_available": ["Tue", "Thu"],
         "schedule_taken": ["Mon", "Wed", "Fri"],
         "role": "tutor",
-        "password": "password789"
+        "password": "password789",
+        "appointments": [{
+            "date": "Mon",
+            "student_id": 1,
+            "courses": 1,
+            "subject": "Math"
+        }]
     }
 ]
