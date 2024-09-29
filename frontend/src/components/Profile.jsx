@@ -9,14 +9,26 @@ const Profile = () => {
       const sessionId = Cookies.get("sessionId");
       console.log("Session ID from cookies:", sessionId); // Log the sessionId
 
-      const response = await fetch(`http://localhost:3000/api/students/read/${sessionId}`, {
+      // Try to fetch data from students endpoint
+      let response = await fetch(`http://localhost:3000/api/students/read/${sessionId}`, {
         headers: {
           "Session-Id": sessionId,
         },
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch user data");
+      if (response.status === 404) {
+        // If students data returns 404, fetch from tutors endpoint
+        response = await fetch(`http://localhost:3000/api/tutors/read/${sessionId}`, {
+          headers: {
+            "Session-Id": sessionId,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch tutors data");
+        }
+      } else if (!response.ok) {
+        throw new Error("Failed to fetch students data");
       }
 
       const data = await response.json();
