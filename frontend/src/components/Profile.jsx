@@ -54,7 +54,7 @@ const Profile = () => {
   if (!userData) {
     return (
       <div className="mt-72 flex h-auto w-full items-center justify-center py-10">
-        <p className="font-newfrank animate-pulse text-9xl font-extrabold text-gray-500">
+        <p className="animate-pulse font-newfrank text-9xl font-extrabold text-gray-500">
           Loading...
         </p>
       </div>
@@ -70,7 +70,7 @@ const Profile = () => {
             <img
               src={userData.picture}
               alt={userData.name}
-              className="mr-6 h-24 w-24 rounded-full object-cover"
+              className="mr-6 h-24 w-24 rounded-full border-4 object-cover"
             />
             <div>
               <h1 className="text-5xl font-bold text-gray-800">
@@ -88,7 +88,7 @@ const Profile = () => {
 
           {/* Profile Information */}
           <div className="mb-6 rounded-lg border border-gray-200 bg-gray-50 p-6 shadow-sm">
-            <h2 className="mb-4 text-2xl font-semibold text-gray-700">
+            <h2 className="mb-4 font-newfrank text-2xl font-semibold text-gray-700">
               Enrolled Courses
             </h2>
             <ul className="list-disc pl-5">
@@ -102,7 +102,7 @@ const Profile = () => {
 
           {/* Schedule Section */}
           <div className="mb-6 rounded-lg border border-gray-200 bg-gray-50 p-6 shadow-sm">
-            <h2 className="mb-4 text-2xl font-semibold text-gray-700">
+            <h2 className="mb-4 font-newfrank text-2xl font-semibold text-gray-700">
               Weekly Schedule
             </h2>
             <ul className="list-disc pl-5">
