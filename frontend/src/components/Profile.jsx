@@ -9,11 +9,14 @@ const Profile = () => {
       const sessionId = Cookies.get("sessionId");
       console.log("Session ID from cookies:", sessionId); // Log the sessionId
 
-      const response = await fetch(`http://localhost:3000/api/students/read/${sessionId}`, {
-        headers: {
-          "Session-Id": sessionId,
-        },
-      });
+      const response = await fetch(
+        `http://localhost:3000/api/students/read/${sessionId}`,
+        {
+          headers: {
+            "Session-Id": sessionId,
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to fetch user data");
@@ -36,80 +39,80 @@ const Profile = () => {
   }
 
   return (
-      <div className="flex h-auto w-full items-center justify-center py-10">
-        <div className="flex h-full w-full max-w-screen-2xl rounded-lg border-2 border-gray-300 bg-white shadow-lg">
-          {/* Left Section */}
-          <div className="w-1/2 p-8">
-            <div className="mb-4 flex items-center">
-              <img
-                  src={userData.picture}
-                  alt={userData.name}
-                  className="mr-6 h-24 w-24 rounded-full object-cover"
-              />
-              <div>
-                <h1 className="text-5xl font-bold text-gray-800">
-                  {userData.name}
-                </h1>
-                <p className="text-lg text-gray-500">{userData.email}</p>
-                <p className="text-lg text-gray-500">{userData.phone}</p>
-                <p className="text-lg text-gray-500">Gender: {userData.gender}</p>
-              </div>
-            </div>
-
-            {/* Profile Information */}
-            <div className="mb-6 rounded-lg border border-gray-200 bg-gray-50 p-6 shadow-sm">
-              <h2 className="mb-4 text-2xl font-semibold text-gray-700">
-                Enrolled Courses
-              </h2>
-              <ul className="list-disc pl-5">
-                {userData.courses?.map((course, index) => (
-                    <li key={index} className="text-lg text-gray-600">
-                      {course}
-                    </li>
-                ))}
-              </ul>
+    <div className="flex h-auto w-full items-center justify-center py-10">
+      <div className="flex h-full w-full max-w-screen-xl rounded-lg border-2 border-gray-300 bg-white shadow-lg">
+        {/* Left Section */}
+        <div className="w-1/2 p-8">
+          <div className="mb-4 flex items-center">
+            <img
+              src={userData.picture}
+              alt={userData.name}
+              className="mr-6 h-24 w-24 rounded-full object-cover"
+            />
+            <div>
+              <h1 className="text-5xl font-bold text-gray-800">
+                {userData.name}
+              </h1>
+              <p className="text-lg text-gray-500">{userData.email}</p>
+              <p className="text-lg text-gray-500">{userData.phone}</p>
+              <p className="text-lg text-gray-500">Gender: {userData.gender}</p>
             </div>
           </div>
 
-          {/* Right Section */}
-          <div className="w-1/2 border-l-2 border-gray-200 p-8">
-            {/* Schedule Section */}
-            <div className="mb-6">
-              <h2 className="mb-4 text-2xl font-semibold text-gray-700">
-                Weekly Schedule
-              </h2>
+          {/* Profile Information */}
+          <div className="mb-6 rounded-lg border border-gray-200 bg-gray-50 p-6 shadow-sm">
+            <h2 className="mb-4 text-2xl font-semibold text-gray-700">
+              Enrolled Courses
+            </h2>
+            <ul className="list-disc pl-5">
+              {userData.courses?.map((course, index) => (
+                <li key={index} className="text-lg text-gray-600">
+                  {course}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Right Section */}
+        <div className="w-1/2 border-l-2 border-gray-200 p-8">
+          {/* Schedule Section */}
+          <div className="mb-6">
+            <h2 className="mb-4 text-2xl font-semibold text-gray-700">
+              Weekly Schedule
+            </h2>
+            <ul className="list-disc pl-5">
+              {userData.schedule?.map((day, index) => (
+                <li key={index} className="text-lg text-gray-600">
+                  {day}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Appointments Section */}
+          <div>
+            <h2 className="mb-4 text-2xl font-semibold text-gray-700">
+              Appointments
+            </h2>
+            {userData.appointments?.length > 0 ? (
               <ul className="list-disc pl-5">
-                {userData.schedule?.map((day, index) => (
-                    <li key={index} className="text-lg text-gray-600">
-                      {day}
-                    </li>
+                {userData.appointments?.map((appointment, index) => (
+                  <li key={index} className="text-lg text-gray-600">
+                    {appointment.subject} on {appointment.date} with Tutor{" "}
+                    {appointment.tutor_id} for {appointment.course}
+                  </li>
                 ))}
               </ul>
-            </div>
-
-            {/* Appointments Section */}
-            <div>
-              <h2 className="mb-4 text-2xl font-semibold text-gray-700">
-                Appointments
-              </h2>
-              {userData.appointments?.length > 0 ? (
-                  <ul className="list-disc pl-5">
-                    {userData.appointments?.map((appointment, index) => (
-                        <li key={index} className="text-lg text-gray-600">
-                          {appointment.subject} on {appointment.date} with Tutor{" "}
-                          {appointment.tutor_id} for {appointment.course}
-                        </li>
-                    ))}
-                  </ul>
-              ) : (
-                  <p className="text-lg text-gray-600">
-                    No appointments scheduled.
-                  </p>
-              )}
-            </div>
+            ) : (
+              <p className="text-lg text-gray-600">
+                No appointments scheduled.
+              </p>
+            )}
           </div>
         </div>
       </div>
+    </div>
   );
 };
 

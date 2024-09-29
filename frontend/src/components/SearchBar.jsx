@@ -32,12 +32,12 @@ const SearchBar = ({ onSearch }) => {
 
   return (
     <div
-      className={`sticky top-0 mx-auto flex items-center justify-center px-3 py-3 transition-all duration-500 ${
-        isSticky ? "w-[55%]" : "w-full"
+      className={`sticky top-0 mx-auto flex items-center justify-center px-3 py-4 transition-all duration-500 ${
+        isSticky ? "mt-1 w-[640px]" : "w-full max-w-screen-xl"
       }`}
     >
       <div
-        className={`box-border flex h-16 w-full max-w-screen-2xl items-center justify-center rounded-lg border-2 border-black bg-white transition-all duration-300 ${
+        className={`w-s box-border flex h-16 max-w-screen-2xl items-center justify-center rounded-lg border-2 border-black bg-white transition-all duration-300 ${
           isSticky ? "w-4/5 p-2" : "w-full p-4"
         }`}
       >

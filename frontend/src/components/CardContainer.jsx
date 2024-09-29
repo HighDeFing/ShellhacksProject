@@ -28,7 +28,7 @@ const CardContainer = ({ searchQuery }) => {
 
   return (
     <div className="flex h-auto w-full justify-center">
-      <div className="w-full max-w-screen-2xl">
+      <div className="w-full max-w-screen-xl">
         {/* Pass the subject selection handler */}
         <SubjectSelection setSelectedSubject={setSelectedSubject} />
 

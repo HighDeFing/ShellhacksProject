@@ -50,9 +50,9 @@ const SubjectSelection = ({ setSelectedSubject }) => {
           console.log("Reset filter");
           setSelectedSubject(null); // Reset the selected subject
         }}
-        className={`flex cursor-pointer items-center gap-2 rounded-lg border-2 border-black bg-gray-500 p-3 px-24 text-white transition-colors duration-300 hover:bg-gray-700`}
+        className={`flex cursor-pointer items-center gap-2 rounded-lg border-2 border-black bg-gray-500 p-3 px-14 text-white transition-colors duration-300 hover:bg-gray-700`}
       >
-        <span className="text-lg font-medium">Reset Filter</span>
+        <span className="font-newfrank text-lg font-normal">Reset Filter</span>
       </div>
 
       {subjects.map((subject) => (
@@ -62,10 +62,12 @@ const SubjectSelection = ({ setSelectedSubject }) => {
             console.log(`Selected subject: ${subject.name}`);
             setSelectedSubject(subject.name); // Set the selected subject
           }}
-          className={`course-tag flex cursor-pointer items-center gap-2 rounded-lg border-2 border-black p-3 px-12 text-white ${subject.bgColor} ${subject.hoverColor} transition-colors duration-300`}
+          className={`course-tag flex cursor-pointer items-center gap-2 rounded-lg border-2 border-black p-3 px-7 text-white ${subject.bgColor} ${subject.hoverColor} transition-colors duration-300`}
         >
           <subject.icon className="text-2xl" />
-          <span className="text-lg font-medium">{subject.name}</span>
+          <span className="font-newfrank text-lg font-normal">
+            {subject.name}
+          </span>
         </div>
       ))}
     </div>

@@ -23,7 +23,7 @@ const CardPage = () => {
 
   return (
     <div className="flex h-auto w-full items-center justify-center py-10">
-      <div className="flex h-full w-full max-w-screen-2xl rounded-lg border-2 border-gray-300 bg-white shadow-lg">
+      <div className="flex h-full w-full max-w-screen-xl rounded-lg border-2 border-gray-300 bg-white shadow-lg">
         {/* Left Section */}
         <div className="w-1/2 p-8">
           <div className="mb-4 flex items-center">
