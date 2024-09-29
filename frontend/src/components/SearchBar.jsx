@@ -32,7 +32,7 @@ const SearchBar = ({ onSearch }) => {
 
   return (
     <div
-      className={`sticky top-0 z-10 mx-auto flex items-center justify-center px-3 py-3 transition-all duration-500 ${
+      className={`sticky top-0 mx-auto flex items-center justify-center px-3 py-3 transition-all duration-500 ${
         isSticky ? "w-[55%]" : "w-full"
       }`}
     >
@@ -46,7 +46,7 @@ const SearchBar = ({ onSearch }) => {
           type="text"
           id="course-search"
           placeholder="Search Courses"
-          className="h-full w-full border-none bg-white pl-2 text-lg text-black placeholder-black placeholder-opacity-70 outline-none"
+          className="font-newfrank h-full w-full border-none bg-white pl-2 text-lg font-light text-black placeholder-black placeholder-opacity-70 outline-none"
           value={query}
           onChange={handleInputChange}
         />

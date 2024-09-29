@@ -8,41 +8,41 @@
     font-style: normal;
     font-weight: 100; /* Thin */
     font-display: swap;
-    src: url("./assets/fonts/New\ Frank\ Thin.otf") format("woff2");
+    src: url("./assets/fonts/NewFrankThin.otf") format("woff2");
   }
   @font-face {
     font-family: "New Frank";
     font-style: normal;
     font-weight: 300; /* Light */
     font-display: swap;
-    src: url("./assets/fonts/New\ Frank\ Light.otf") format("woff2");
+    src: url("./assets/fonts/NewFrankLight.otf") format("woff2");
   }
   @font-face {
     font-family: "New Frank";
     font-style: normal;
     font-weight: 400; /* Regular */
     font-display: swap;
-    src: url("./assets/fonts/New\ Frank\ Regular.otf") format("woff2");
+    src: url("./assets/fonts/NewFrankRegular.otf") format("woff2");
   }
   @font-face {
     font-family: "New Frank";
     font-style: normal;
     font-weight: 500; /* Medium */
     font-display: swap;
-    src: url("./assets/fonts/New\ Frank\ Medium.otf") format("woff2");
+    src: url("./assets/fonts/NewFrankMedium.otf") format("woff2");
   }
   @font-face {
     font-family: "New Frank";
     font-style: normal;
     font-weight: 700; /* Bold */
     font-display: swap;
-    src: url("./assets/fonts/New\ Frank\ Bold.otf") format("woff2");
+    src: url("./assets/fonts/NewFrankBold.otf") format("woff2");
   }
   @font-face {
     font-family: "New Frank";
     font-style: normal;
     font-weight: 800; /* Extra Bold */
     font-display: swap;
-    src: url("./assets/fonts/New\ Frank\ ExtraBold.otf") format("woff2");
+    src: url("./assets/fonts/NewFrankExtraBold.otf") format("woff2");
   }
 }

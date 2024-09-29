@@ -10,7 +10,7 @@ const Modal = ({ buttonText, role }) => {
     <div>
       <button
         onClick={() => setIsOpen(true)}
-        className="flex h-12 items-center justify-center rounded-md border-2 border-black px-4 py-2 text-2xl hover:bg-gray-700 hover:text-white"
+        className="hover:border-b-fiu-gold font-newfrank box-border flex h-12 items-center justify-center border-b-4 border-b-transparent px-4 py-2 text-xl font-medium text-white hover:border-b-4"
       >
         {buttonText}
       </button>

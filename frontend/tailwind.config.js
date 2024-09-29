@@ -6,6 +6,10 @@ export default {
       fontFamily: {
         newfrank: ["New Frank", "sans-serif"],
       },
+      colors: {
+        "fiu-gold": "#FFCC00",
+        "fiu-blue": "#081E3F",
+      },
     },
   },
   plugins: [],

@@ -24,10 +24,10 @@ const Header = () => {
   };
 
   return (
-    <div className="sticky top-0 mb-12 h-24 min-h-24 w-full border-b border-black border-opacity-5 bg-gray-50">
+    <div className="bg-fiu-blue sticky top-0 mb-12 h-24 min-h-24 w-full border-b border-black border-opacity-5">
       <div className="flex h-full w-full items-center justify-between px-12">
         <Link to="/">
-          <p className="text-5xl text-gray-500">
+          <p className="font-newfrank text-5xl font-bold text-white">
             <b>T</b>utor<b>F</b>inder
           </p>
         </Link>
