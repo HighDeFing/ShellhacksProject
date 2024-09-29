@@ -1,82 +1,402 @@
 [
   {
     "id": 1,
-    "name": "Mathematics I",
+    "name": "Advanced Calculus",
     "tutors_id": [1, 3],
-    "image_url": "/images/mathematics.jpg",
-    "description": "An introductory course to Mathematics covering basic algebra and calculus.",
+    "image_url": "/images/advanced_calculus.jpg",
+    "description": "A detailed course on multivariable calculus, partial derivatives, and multiple integrals.",
     "subject": "Mathematics"
   },
   {
     "id": 2,
-    "name": "Physics II",
-    "tutors_id": [4],
-    "image_url": "/images/physics.jpg",
-    "description": "A continuation of Physics I, focusing on electromagnetism and thermodynamics.",
-    "subject": "Physics"
-  },
-  {
-    "id": 3,
-    "name": "Chemistry I",
-    "tutors_id": [2, 3],
-    "image_url": "/images/chemistry.jpg",
-    "description": "An introductory course to Chemistry covering atomic structure and chemical reactions.",
+    "name": "Organic Chemistry",
+    "tutors_id": [2],
+    "image_url": "/images/organic_chemistry.jpg",
+    "description": "Study of the structure, properties, and reactions of organic compounds.",
     "subject": "Chemistry"
   },
   {
+    "id": 3,
+    "name": "Data Structures and Algorithms",
+    "tutors_id": [3, 4],
+    "image_url": "/images/data_structures.jpg",
+    "description": "Introduction to algorithms and data structures, including lists, stacks, queues, and trees.",
+    "subject": "Computer Science"
+  },
+  {
     "id": 4,
-    "name": "Biology",
-    "tutors_id": [1],
-    "image_url": "/images/biology.jpg",
-    "description": "A comprehensive course on Biology, including cell biology and genetics.",
+    "name": "Human Anatomy",
+    "tutors_id": [1, 4],
+    "image_url": "/images/human_anatomy.jpg",
+    "description": "A comprehensive study of human anatomy, focusing on organ systems and their functions.",
     "subject": "Health"
   },
   {
     "id": 5,
-    "name": "English",
-    "tutors_id": [2, 4],
-    "image_url": "/images/english.jpg",
-    "description": "A course on English language and literature, focusing on grammar and composition.",
-    "subject": "Literature"
+    "name": "Architectural Design I",
+    "tutors_id": [2, 3],
+    "image_url": "/images/architectural_design.jpg",
+    "description": "Introduction to the principles of architectural design and drawing.",
+    "subject": "Architecture"
   },
   {
     "id": 6,
-    "name": "History",
-    "tutors_id": [3, 4],
-    "image_url": "/images/history.jpg",
-    "description": "A course on world history, covering ancient to modern times.",
-    "subject": "History"
+    "name": "Linear Algebra",
+    "tutors_id": [4],
+    "image_url": "/images/linear_algebra.jpg",
+    "description": "Covers matrix theory, vector spaces, linear transformations, and eigenvalues.",
+    "subject": "Mathematics"
   },
   {
     "id": 7,
-    "name": "Geography",
+    "name": "Inorganic Chemistry",
     "tutors_id": [1],
-    "image_url": "/images/geography.jpg",
-    "description": "A course on physical and human geography, including map reading and spatial analysis.",
-    "subject": "Geography"
+    "image_url": "/images/inorganic_chemistry.jpg",
+    "description": "Study of inorganic compounds, their properties, structures, and reactions.",
+    "subject": "Chemistry"
   },
   {
     "id": 8,
-    "name": "Computer Science",
+    "name": "Operating Systems",
     "tutors_id": [2, 3],
-    "image_url": "/images/computer_science.jpg",
-    "description": "An introductory course to computer science, covering programming and algorithms.",
+    "image_url": "/images/operating_systems.jpg",
+    "description": "Introduction to operating system concepts, including processes, memory, and file systems.",
     "subject": "Computer Science"
   },
   {
     "id": 9,
-    "name": "Art",
+    "name": "Introduction to Public Health",
     "tutors_id": [4],
-    "image_url": "/images/art.jpg",
-    "description": "A course on visual arts, including drawing, painting, and sculpture.",
-    "subject": "Art"
+    "image_url": "/images/public_health.jpg",
+    "description": "Overview of public health principles, including epidemiology, policy, and health promotion.",
+    "subject": "Health"
   },
   {
     "id": 10,
-    "name": "Music",
-    "tutors_id": [1, 2],
-    "image_url": "/images/music.jpg",
-    "description": "A course on music theory and practice, including instrument playing and composition.",
-    "subject": "Music"
+    "name": "Urban Planning and Design",
+    "tutors_id": [1, 3],
+    "image_url": "/images/urban_planning.jpg",
+    "description": "A study of urban planning principles, zoning laws, and sustainable city design.",
+    "subject": "Architecture"
+  },
+  {
+    "id": 11,
+    "name": "Abstract Algebra",
+    "tutors_id": [2],
+    "image_url": "/images/abstract_algebra.jpg",
+    "description": "Introduction to group theory, rings, and fields.",
+    "subject": "Mathematics"
+  },
+  {
+    "id": 12,
+    "name": "Physical Chemistry",
+    "tutors_id": [3, 4],
+    "image_url": "/images/physical_chemistry.jpg",
+    "description": "Study of the physical properties of molecules, chemical thermodynamics, and kinetics.",
+    "subject": "Chemistry"
+  },
+  {
+    "id": 13,
+    "name": "Machine Learning",
+    "tutors_id": [1],
+    "image_url": "/images/machine_learning.jpg",
+    "description": "Introduction to machine learning concepts, algorithms, and applications.",
+    "subject": "Computer Science"
+  },
+  {
+    "id": 14,
+    "name": "Nutrition and Health",
+    "tutors_id": [2, 3],
+    "image_url": "/images/nutrition.jpg",
+    "description": "Covers the role of nutrition in maintaining health and preventing disease.",
+    "subject": "Health"
+  },
+  {
+    "id": 15,
+    "name": "Environmental Architecture",
+    "tutors_id": [4],
+    "image_url": "/images/environmental_architecture.jpg",
+    "description": "Study of sustainable architecture and environmentally-friendly building practices.",
+    "subject": "Architecture"
+  },
+  {
+    "id": 16,
+    "name": "Differential Equations",
+    "tutors_id": [1],
+    "image_url": "/images/differential_equations.jpg",
+    "description": "Covers methods for solving ordinary differential equations and their applications.",
+    "subject": "Mathematics"
+  },
+  {
+    "id": 17,
+    "name": "Biochemistry",
+    "tutors_id": [2],
+    "image_url": "/images/biochemistry.jpg",
+    "description": "Study of the chemical processes within and related to living organisms.",
+    "subject": "Chemistry"
+  },
+  {
+    "id": 18,
+    "name": "Software Engineering",
+    "tutors_id": [3, 4],
+    "image_url": "/images/software_engineering.jpg",
+    "description": "Covers principles of software development, project management, and design patterns.",
+    "subject": "Computer Science"
+  },
+  {
+    "id": 19,
+    "name": "Epidemiology",
+    "tutors_id": [1, 4],
+    "image_url": "/images/epidemiology.jpg",
+    "description": "Study of the distribution and determinants of health-related states in populations.",
+    "subject": "Health"
+  },
+  {
+    "id": 20,
+    "name": "History of Architecture",
+    "tutors_id": [2, 3],
+    "image_url": "/images/history_of_architecture.jpg",
+    "description": "Covers the history and evolution of architecture from ancient times to modern day.",
+    "subject": "Architecture"
+  },
+  {
+    "id": 21,
+    "name": "Complex Analysis",
+    "tutors_id": [4],
+    "image_url": "/images/complex_analysis.jpg",
+    "description": "Study of functions of a complex variable and their applications.",
+    "subject": "Mathematics"
+  },
+  {
+    "id": 22,
+    "name": "Analytical Chemistry",
+    "tutors_id": [1],
+    "image_url": "/images/analytical_chemistry.jpg",
+    "description": "Covers techniques and methods for the analysis of chemical substances.",
+    "subject": "Chemistry"
+  },
+  {
+    "id": 23,
+    "name": "Computer Networks",
+    "tutors_id": [2, 3],
+    "image_url": "/images/computer_networks.jpg",
+    "description": "Introduction to networking principles, including protocols, architectures, and security.",
+    "subject": "Computer Science"
+  },
+  {
+    "id": 24,
+    "name": "Global Health",
+    "tutors_id": [4],
+    "image_url": "/images/global_health.jpg",
+    "description": "Study of global health challenges and strategies for improving health outcomes worldwide.",
+    "subject": "Health"
+  },
+  {
+    "id": 25,
+    "name": "Structural Engineering",
+    "tutors_id": [1, 3],
+    "image_url": "/images/structural_engineering.jpg",
+    "description": "Covers the design and analysis of structures such as buildings and bridges.",
+    "subject": "Architecture"
+  },
+  {
+    "id": 26,
+    "name": "Probability and Statistics",
+    "tutors_id": [2],
+    "image_url": "/images/probability_statistics.jpg",
+    "description": "Introduction to probability theory and statistical methods for data analysis.",
+    "subject": "Mathematics"
+  },
+  {
+    "id": 27,
+    "name": "Environmental Chemistry",
+    "tutors_id": [3, 4],
+    "image_url": "/images/environmental_chemistry.jpg",
+    "description": "Study of chemical processes occurring in the environment and their effects.",
+    "subject": "Chemistry"
+  },
+  {
+    "id": 28,
+    "name": "Artificial Intelligence",
+    "tutors_id": [1],
+    "image_url": "/images/artificial_intelligence.jpg",
+    "description": "Introduction to artificial intelligence techniques, including machine learning and neural networks.",
+    "subject": "Computer Science"
+  },
+  {
+    "id": 29,
+    "name": "Healthcare Management",
+    "tutors_id": [2, 3],
+    "image_url": "/images/healthcare_management.jpg",
+    "description": "Covers management practices and policies in healthcare settings.",
+    "subject": "Health"
+  },
+  {
+    "id": 30,
+    "name": "Green Building Design",
+    "tutors_id": [4],
+    "image_url": "/images/green_building.jpg",
+    "description": "Introduction to sustainable building practices and green technologies.",
+    "subject": "Architecture"
+  },
+  {
+    "id": 31,
+    "name": "Vector Calculus",
+    "tutors_id": [1, 3],
+    "image_url": "/images/vector_calculus.jpg",
+    "description": "Study of vector fields, line integrals, and Green's Theorem.",
+    "subject": "Mathematics"
+  },
+  {
+    "id": 32,
+    "name": "Medicinal Chemistry",
+    "tutors_id": [2],
+    "image_url": "/images/medicinal_chemistry.jpg",
+    "description": "Study of chemistry's role in drug discovery and development.",
+    "subject": "Chemistry"
+  },
+  {
+    "id": 33,
+    "name": "Cybersecurity",
+    "tutors_id": [3, 4],
+    "image_url": "/images/cybersecurity.jpg",
+    "description": "Introduction to cybersecurity principles, including encryption and network security.",
+    "subject": "Computer Science"
+  },
+  {
+    "id": 34,
+    "name": "Health Economics",
+    "tutors_id": [1],
+    "image_url": "/images/health_economics.jpg",
+    "description": "Study of the economics of healthcare, including cost-benefit analysis and policy implications.",
+    "subject": "Health"
+  },
+  {
+    "id": 35,
+    "name": "Architectural History",
+    "tutors_id": [2],
+    "image_url": "/images/architectural_history.jpg",
+    "description": "A survey of architectural styles and movements throughout history.",
+    "subject": "Architecture"
+  },
+  {
+    "id": 36,
+    "name": "Real Analysis",
+    "tutors_id": [3, 4],
+    "image_url": "/images/real_analysis.jpg",
+    "description": "Study of the rigorous theory of calculus, including limits, continuity, and integrals.",
+    "subject": "Mathematics"
+  },
+  {
+    "id": 37,
+    "name": "Physical Organic Chemistry",
+    "tutors_id": [1, 4],
+    "image_url": "/images/physical_organic_chemistry.jpg",
+    "description": "Study of the physical properties of organic molecules and their reactions.",
+    "subject": "Chemistry"
+  },
+  {
+    "id": 38,
+    "name": "Introduction to Databases",
+    "tutors_id": [2, 3],
+    "image_url": "/images/databases.jpg",
+    "description": "Covers relational databases, SQL, and database management systems.",
+    "subject": "Computer Science"
+  },
+  {
+    "id": 39,
+    "name": "Global Nutrition",
+    "tutors_id": [4],
+    "image_url": "/images/global_nutrition.jpg",
+    "description": "Study of global nutrition issues and strategies for improving food security.",
+    "subject": "Health"
+  },
+  {
+    "id": 40,
+    "name": "Building Construction",
+    "tutors_id": [1, 3],
+    "image_url": "/images/building_construction.jpg",
+    "description": "Introduction to building materials, construction techniques, and safety standards.",
+    "subject": "Architecture"
+  },
+  {
+    "id": 41,
+    "name": "Number Theory",
+    "tutors_id": [2],
+    "image_url": "/images/number_theory.jpg",
+    "description": "Study of the properties of integers, prime numbers, and divisibility.",
+    "subject": "Mathematics"
+  },
+  {
+    "id": 42,
+    "name": "Environmental Health",
+    "tutors_id": [3, 4],
+    "image_url": "/images/environmental_health.jpg",
+    "description": "Study of environmental factors that affect human health, including pollution and climate change.",
+    "subject": "Health"
+  },
+  {
+    "id": 43,
+    "name": "Introduction to Programming",
+    "tutors_id": [1],
+    "image_url": "/images/programming.jpg",
+    "description": "A first course in programming, covering basic concepts and algorithms.",
+    "subject": "Computer Science"
+  },
+  {
+    "id": 44,
+    "name": "Thermodynamics",
+    "tutors_id": [2],
+    "image_url": "/images/thermodynamics.jpg",
+    "description": "Study of the principles of thermodynamics and their applications in chemistry.",
+    "subject": "Chemistry"
+  },
+  {
+    "id": 45,
+    "name": "Introduction to Architecture",
+    "tutors_id": [3, 4],
+    "image_url": "/images/introduction_architecture.jpg",
+    "description": "Covers the fundamental principles of architectural design and structure.",
+    "subject": "Architecture"
+  },
+  {
+    "id": 46,
+    "name": "Differential Geometry",
+    "tutors_id": [1, 3],
+    "image_url": "/images/differential_geometry.jpg",
+    "description": "Covers the geometry of curves and surfaces, and its applications.",
+    "subject": "Mathematics"
+  },
+  {
+    "id": 47,
+    "name": "Pharmacology",
+    "tutors_id": [2],
+    "image_url": "/images/pharmacology.jpg",
+    "description": "Study of drugs and their effects on living systems.",
+    "subject": "Health"
+  },
+  {
+    "id": 48,
+    "name": "Cloud Computing",
+    "tutors_id": [3],
+    "image_url": "/images/cloud_computing.jpg",
+    "description": "Introduction to cloud computing technologies and services.",
+    "subject": "Computer Science"
+  },
+  {
+    "id": 49,
+    "name": "Advanced Architecture",
+    "tutors_id": [4],
+    "image_url": "/images/advanced_architecture.jpg",
+    "description": "Advanced study of architectural theory, design, and construction.",
+    "subject": "Architecture"
+  },
+  {
+    "id": 50,
+    "name": "Computational Mathematics",
+    "tutors_id": [1],
+    "image_url": "/images/computational_math.jpg",
+    "description": "Covers numerical methods for solving mathematical problems computationally.",
+    "subject": "Mathematics"
   }
 ]
