@@ -42,7 +42,7 @@ const LoginForm = ({ role, setIsOpen }) => {
     setError(""); // Reset error state before request
 
     try {
-      const response = await fetch("http://localhost:3000/api/register", {
+      const response = await fetch("http://localhost:3000/api/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,7 +50,7 @@ const LoginForm = ({ role, setIsOpen }) => {
         body: JSON.stringify({ email, password, role }),
       });
 
-      if (!response.ok) {
+      if (response.status !== 201) {
         throw new Error("Registration failed");
       }
 
