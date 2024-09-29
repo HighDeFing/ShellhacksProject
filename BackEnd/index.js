@@ -5,11 +5,23 @@ import tutorRoutes from "./routes/tutorRoutes.js";
 import { initCollections } from "../DataBase/config/db.js";
 import loginRoutes from "./scripts/login.js";
 import courseRoutes from "./routes/courseRoutes.js";
+import session from 'express-session';
+
 
 const app = express();
 
+
+// Configure session middleware
+app.use(session({
+  secret: 'your_secret_key', // Replace with your own secret key
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Set to true if using HTTPS
+}));
+
 app.use(express.json());
 app.use(cors());
+
 
 const startServer = async () => {
   try {
