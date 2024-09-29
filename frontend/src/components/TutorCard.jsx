@@ -82,14 +82,16 @@ const TutorCard = () => {
 
   return (
     <div className="flex h-auto w-full items-center justify-center py-10">
-      <div className="flex h-full w-1/2 max-w-screen-2xl rounded-lg border-2 border-gray-300 bg-white shadow-lg">
+      <div className="relative flex h-full w-1/2 max-w-screen-2xl rounded-lg border-2 border-gray-300 bg-white shadow-lg">
         {/* Left Section */}
         <div className="w-full p-8">
           <div className="mb-4 flex items-center">
             <Link to="/" className="mr-3">
               <IoMdExit className="text-3xl text-gray-600 hover:text-gray-800" />
             </Link>
-            <h1 className="text-5xl font-bold text-gray-800">{tutor.name}</h1>
+            <h1 className="px-5 text-5xl font-bold text-gray-800">
+              {tutor.name}
+            </h1>
           </div>
           <div className="mb-6 rounded-lg border border-gray-200 bg-gray-50 p-6 shadow-sm">
             <h2 className="font-newfrank mb-4 text-2xl font-semibold text-gray-700">
