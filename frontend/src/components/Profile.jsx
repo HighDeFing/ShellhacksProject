@@ -1,5 +1,7 @@
+// Profile.jsx
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import Appointments from "./Appointments";
 
 const Profile = () => {
   const [userData, setUserData] = useState(null);
@@ -100,25 +102,7 @@ const Profile = () => {
             </div>
 
             {/* Appointments Section */}
-            <div>
-              <h2 className="mb-4 text-2xl font-semibold text-gray-700">
-                Appointments
-              </h2>
-              {userData.appointments?.length > 0 ? (
-                  <ul className="list-disc pl-5">
-                    {userData.appointments?.map((appointment, index) => (
-                        <li key={index} className="text-lg text-gray-600">
-                          {appointment.subject} on {appointment.date} with Tutor{" "}
-                          {appointment.tutor_id} for {appointment.course}
-                        </li>
-                    ))}
-                  </ul>
-              ) : (
-                  <p className="text-lg text-gray-600">
-                    No appointments scheduled.
-                  </p>
-              )}
-            </div>
+            <Appointments role={userData.role} appointments={userData.appointments} />
           </div>
         </div>
       </div>
