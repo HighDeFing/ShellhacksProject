@@ -32,11 +32,6 @@ const Header = () => {
           </p>
         </Link>
         <div className="flex space-x-7">
-          {/* Show token or "Not logged in" */}
-          <p className="flex h-12 w-[15ch] items-center overflow-hidden text-ellipsis whitespace-nowrap border-2 text-sm">
-            Token: {authToken ? authToken : "Not logged in"}
-          </p>
-
           {/* If user is logged in, show logout on the left and profile on the right, otherwise show modals */}
           {authToken ? (
             <>
