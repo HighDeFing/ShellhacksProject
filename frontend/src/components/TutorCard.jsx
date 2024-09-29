@@ -73,7 +73,7 @@ const TutorCard = () => {
   if (!tutor) {
     return (
       <div className="mt-72 flex h-auto w-full items-center justify-center py-10">
-        <p className="font-newfrank animate-pulse text-9xl font-extrabold text-gray-500">
+        <p className="animate-pulse font-newfrank text-9xl font-extrabold text-gray-500">
           Loading...
         </p>
       </div>
@@ -86,7 +86,7 @@ const TutorCard = () => {
         {/* Left Section */}
         <div className="w-full p-8">
           <div className="mb-4 flex items-center">
-            <Link to="/" className="mr-3">
+            <Link to="/" className="absolute left-3 top-3 mr-3">
               <IoMdExit className="text-3xl text-gray-600 hover:text-gray-800" />
             </Link>
             <h1 className="px-5 text-5xl font-bold text-gray-800">
@@ -94,7 +94,7 @@ const TutorCard = () => {
             </h1>
           </div>
           <div className="mb-6 rounded-lg border border-gray-200 bg-gray-50 p-6 shadow-sm">
-            <h2 className="font-newfrank mb-4 text-2xl font-semibold text-gray-700">
+            <h2 className="mb-4 font-newfrank text-2xl font-semibold text-gray-700">
               Tutor Details
             </h2>
             <p className="text-lg text-gray-600">Email: {tutor.email}</p>
@@ -104,7 +104,7 @@ const TutorCard = () => {
           </div>
 
           <div className="mb-6 rounded-lg border border-gray-200 bg-gray-50 p-6 shadow-sm">
-            <p className="font-newfrank mb-4 text-2xl font-semibold text-gray-700">
+            <p className="mb-4 font-newfrank text-2xl font-semibold text-gray-700">
               Available Schedule:
             </p>
             <div className="flex items-center justify-center gap-2">
@@ -124,7 +124,7 @@ const TutorCard = () => {
               </select>
               <button
                 onClick={handleSubmit}
-                className="font-newfrank flex h-[59px] w-full cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-white bg-green-500 px-14 py-5 font-semibold text-white transition-colors duration-300 hover:bg-green-700"
+                className="flex h-[59px] w-full cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-white bg-green-500 px-14 py-5 font-newfrank font-semibold text-white transition-colors duration-300 hover:bg-green-700"
               >
                 Confirm Appointment
               </button>
