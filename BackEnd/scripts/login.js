@@ -85,7 +85,6 @@ router.post("/signup", async (req, res) => {
     });
   }
   
-  console.log(record)
   return res.status(200).send(record);
 });
 
