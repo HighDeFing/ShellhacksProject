@@ -23,12 +23,12 @@ const CardContainer = () => {
 
   return (
     <div className="flex h-auto w-full justify-center">
-      <div className="w-full max-w-screen-lg border-2">
+      <div className="w-full max-w-screen-2xl border-4">
         {/* Pass the subject selection handler */}
         <SubjectSelection setSelectedSubject={setSelectedSubject} />
 
         {/* Grid for displaying course cards */}
-        <div className="grid w-full grid-cols-3 place-content-center gap-8 border-2 px-20">
+        <div className="grid w-full grid-cols-5 place-content-center gap-6 border-2 px-1 pt-5">
           {filteredCourses.map((course) => (
             <Link to={`/course/${course._id}`} key={course._id}>
               <CourseCard

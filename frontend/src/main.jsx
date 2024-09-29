@@ -6,11 +6,9 @@ import "./index.css";
 import CardPage from "./components/CardPage.jsx";
 import LandingPage from "./components/LandingPage.jsx";
 import TutorList from "./components/TutorList.jsx";
-import Login from "./components/LoginForm.jsx";
-import Modal from "./components/Modal.jsx";
 import TutorCard from "./components/TutorCard.jsx";
 import Profile from "./components/Profile.jsx";
-import CourseCard from "./components/CourseCard.jsx";
+
 
 const router = createBrowserRouter([
   {
