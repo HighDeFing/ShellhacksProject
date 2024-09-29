@@ -17,7 +17,13 @@ const CardPage = () => {
   }, [id]);
 
   if (!course) {
-    return <p>Loading...</p>;
+    return (
+      <div className="mt-80 flex h-auto w-full items-center justify-center py-10">
+        <p className="font-newfrank animate-pulse text-9xl font-extrabold text-gray-500">
+          Loading...
+        </p>
+      </div>
+    );
   }
 
   return (
