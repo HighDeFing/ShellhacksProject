@@ -62,7 +62,7 @@ const CardPage = () => {
         <div className="w-1/2 border-l-2 border-gray-200">
           {/* Tutor List */}
           <div className="mb-6">
-            <TutorList courseTutorsId={course.tutors_id} />
+            <TutorList courseTutorsId={course.tutors_id} courseId={id} />
           </div>
         </div>
       </div>
