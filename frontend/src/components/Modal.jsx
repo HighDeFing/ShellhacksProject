@@ -7,13 +7,18 @@ const Modal = ({ buttonText, role, setIsModalOpen }) => {
   const [isOpen, setIsOpenState] = useState(false);
 
   const handleOpen = () => {
-    setIsOpenState(true);
-    setIsModalOpen(true); // Update the state in LandingPage
+    // Set the search bar z-index first with a small delay before opening the modal
+    setIsModalOpen(true); // Trigger the search bar z-index change
+    setTimeout(() => {
+      setIsOpenState(true); // Open the modal after the delay
+    }, 200); // Delay of 200ms to allow search bar z-index to switch
   };
 
   const handleClose = () => {
     setIsOpenState(false);
-    setIsModalOpen(false); // Update the state in LandingPage
+    setTimeout(() => {
+      setIsModalOpen(false); // Reset the search bar z-index after modal closes
+    }, 200); // Close the modal and reset z-index after delay
   };
 
   return (
