@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const TutorList = () => {
+const TutorList = ({ courseTutorsId }) => {
   const [tutors, setTutors] = useState([]);
   const navigate = useNavigate();
 
@@ -14,23 +14,35 @@ const TutorList = () => {
   const handleButtonClick = (id) => {
     navigate(`/tutor/${id}`);
   };
-  console.log(tutors)
+
+  // Ensure courseTutorsId is an array
+  const courseTutorIdsArray = Array.isArray(courseTutorsId)
+    ? courseTutorsId
+    : courseTutorsId.split(",").map(Number);
+
+  // Filter tutors whose `id` matches any value in the courseTutorIdsArray
+  const filteredTutors = tutors.filter((tutor) =>
+    courseTutorIdsArray.includes(tutor.id)
+  );
 
   return (
     <div>
       <h1>Tutors</h1>
       <ul>
-        {tutors.map((tutor) => (
-          <div className="border-2" key={tutor.id}>
-            <li>{tutor.name}</li>
-            <li>{tutor.phone}</li>
-            <li>{tutor.gender}</li>
-            <li>{tutor.courses}</li>
-            <button onClick={() => handleButtonClick(tutor._id)}>
-              Pick Me!
-            </button>
-          </div>
-        ))}
+        {filteredTutors.length > 0 ? (
+          filteredTutors.map((tutor) => (
+            <div className="border-2" key={tutor._id}>
+              <li>{tutor.name}</li>
+              <li>{tutor.email}</li>
+              <li>{tutor.phone}</li>
+              <button onClick={() => handleButtonClick(tutor._id)}>
+                Pick Me!
+              </button>
+            </div>
+          ))
+        ) : (
+          <p>No tutors available for this course.</p>
+        )}
       </ul>
     </div>
   );
