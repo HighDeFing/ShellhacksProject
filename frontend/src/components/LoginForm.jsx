@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
 
 const LoginForm = ({ role, setIsOpen }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // Toggle password visibility
   const [error, setError] = useState("");
 
   // Handle login submission
@@ -112,14 +114,23 @@ const LoginForm = ({ role, setIsOpen }) => {
             >
               Password:
             </label>
-            <input
-              type="password"
-              id="login_password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full rounded-md border border-slate-500 px-3 py-2 text-black focus:border-slate-700 focus:outline-none focus:ring-slate-700 sm:text-sm"
-              required
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"} // Toggle between text and password
+                id="login_password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="mt-1 block w-full rounded-md border border-slate-500 px-3 py-2 text-black focus:border-slate-700 focus:outline-none focus:ring-slate-700 sm:text-sm"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-3 flex items-center text-gray-500"
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
           </div>
 
           {/* Buttons */}
