@@ -6,7 +6,7 @@
         "phone": "+1234567890",
         "gender": "Male",
         "picture": "john_picture.jpg",
-        "course_id": [1, 2],
+        "course_id": [],
         "schedule_available": ["Mon", "Wed", "Fri"],
         "schedule_taken": ["Tue", "Thu"],
         "role": "tutor",
