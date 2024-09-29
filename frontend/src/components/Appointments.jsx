@@ -19,18 +19,21 @@ const Appointments = ({ role, appointments }) => {
     };
 
     const fetchCourseDetails = async (courseId) => {
-        try {
-            const response = await fetch(`http://localhost:3000/api/courses/readeasy/${courseId}`);
-            if (response.ok) {
-                const data = await response.json();
-                setCourses(prevCourses => ({ ...prevCourses, [courseId]: data }));
-            } else {
-                console.error(`Failed to fetch course with ID ${courseId}`);
-            }
-        } catch (error) {
-            console.error(`Error fetching course with ID ${courseId}:`, error);
+    try {
+        let response = await fetch(`http://localhost:3000/api/courses/readeasy/${courseId}`);
+        if (response.status === 404) {
+            response = await fetch(`http://localhost:3000/api/courses/read/${courseId}`);
         }
-    };
+        if (response.ok) {
+            const data = await response.json();
+            setCourses(prevCourses => ({ ...prevCourses, [courseId]: data }));
+        } else {
+            console.error(`Failed to fetch course with ID ${courseId}`);
+        }
+    } catch (error) {
+        console.error(`Error fetching course with ID ${courseId}:`, error);
+    }
+};
 
     useEffect(() => {
         appointments.forEach(appointment => {

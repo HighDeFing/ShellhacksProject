@@ -49,45 +49,48 @@ const TutorCard = () => {
     };
 
     const handleSubmit = async () => {
-        if (!isLoggedIn) {
-            alert("You must be logged in to schedule an appointment.");
-            return;
-        }
+    if (!isLoggedIn) {
+        alert("You must be logged in to schedule an appointment.");
+        return;
+    }
 
-        if (selectedSchedule && student) {
-            const newAppointment = {
-                date: selectedSchedule,
-                tutor_id: tutor._id,
-                courses: courseId, // Use the courseId from the query parameter
-                subject: tutor.subject
-            };
+    if (selectedSchedule && student) {
+        const newAppointment = {
+            date: selectedSchedule,
+            tutor_id: tutor.id, // Ensure this is the correct ID
+            courses: courseId, // Ensure this is the correct ID
+            subject: tutor.subject
+        };
 
-            const updatedAppointments = [...student.appointments, newAppointment];
-            const updatedStudent = { ...student, appointments: updatedAppointments };
+        const updatedAppointments = [...student.appointments, newAppointment];
+        const { _id, ...studentWithoutId } = student; // Exclude _id from the student object
+        const updatedStudent = { ...studentWithoutId, appointments: updatedAppointments };
 
-            try {
-                const response = await fetch(`http://localhost:3000/api/students/update/${student._id}`, {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(updatedStudent)
-                });
+        try {
+            const response = await fetch(`http://localhost:3000/api/students/update/${student._id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(updatedStudent)
+            });
 
-                if (response.ok) {
-                    setStudent(updatedStudent);
-                    alert(`Appointment scheduled on ${selectedSchedule}`);
-                } else {
-                    alert("Failed to update student appointments.");
-                }
-            } catch (error) {
-                console.error("Error updating student appointments:", error);
-                alert("Error updating student appointments.");
+            if (response.ok) {
+                setStudent(updatedStudent);
+                alert(`Appointment scheduled on ${selectedSchedule}`);
+            } else {
+                const errorData = await response.json();
+                console.error("Failed to update student appointments:", errorData);
+                alert("Failed to update student appointments.");
             }
-        } else {
-            alert("Please select a day.");
+        } catch (error) {
+            console.error("Error updating student appointments:", error);
+            alert("Error updating student appointments.");
         }
-    };
+    } else {
+        alert("Please select a day.");
+    }
+};
 
     if (!tutor) {
         return <div>Loading...</div>;
