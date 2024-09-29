@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Mathematics I",
-    "tutors_id": [101, 102],
+    "tutors_id": [1, 3],
     "image_url": "/images/mathematics.jpg",
     "description": "An introductory course to Mathematics covering basic algebra and calculus.",
     "subject": "Mathematics"
@@ -10,7 +10,7 @@
   {
     "id": 2,
     "name": "Physics II",
-    "tutors_id": [103],
+    "tutors_id": [4],
     "image_url": "/images/physics.jpg",
     "description": "A continuation of Physics I, focusing on electromagnetism and thermodynamics.",
     "subject": "Physics"
@@ -18,7 +18,7 @@
   {
     "id": 3,
     "name": "Chemistry I",
-    "tutors_id": [104, 105],
+    "tutors_id": [2, 3],
     "image_url": "/images/chemistry.jpg",
     "description": "An introductory course to Chemistry covering atomic structure and chemical reactions.",
     "subject": "Chemistry"
@@ -26,7 +26,7 @@
   {
     "id": 4,
     "name": "Biology",
-    "tutors_id": [106],
+    "tutors_id": [1],
     "image_url": "/images/biology.jpg",
     "description": "A comprehensive course on Biology, including cell biology and genetics.",
     "subject": "Health"
@@ -34,7 +34,7 @@
   {
     "id": 5,
     "name": "English",
-    "tutors_id": [107, 108],
+    "tutors_id": [2, 4],
     "image_url": "/images/english.jpg",
     "description": "A course on English language and literature, focusing on grammar and composition.",
     "subject": "Literature"
@@ -42,7 +42,7 @@
   {
     "id": 6,
     "name": "History",
-    "tutors_id": [109, 110],
+    "tutors_id": [3, 4],
     "image_url": "/images/history.jpg",
     "description": "A course on world history, covering ancient to modern times.",
     "subject": "History"
@@ -50,7 +50,7 @@
   {
     "id": 7,
     "name": "Geography",
-    "tutors_id": [111],
+    "tutors_id": [1],
     "image_url": "/images/geography.jpg",
     "description": "A course on physical and human geography, including map reading and spatial analysis.",
     "subject": "Geography"
@@ -58,7 +58,7 @@
   {
     "id": 8,
     "name": "Computer Science",
-    "tutors_id": [112, 113],
+    "tutors_id": [2, 3],
     "image_url": "/images/computer_science.jpg",
     "description": "An introductory course to computer science, covering programming and algorithms.",
     "subject": "Computer Science"
@@ -66,7 +66,7 @@
   {
     "id": 9,
     "name": "Art",
-    "tutors_id": [114],
+    "tutors_id": [4],
     "image_url": "/images/art.jpg",
     "description": "A course on visual arts, including drawing, painting, and sculpture.",
     "subject": "Art"
@@ -74,7 +74,7 @@
   {
     "id": 10,
     "name": "Music",
-    "tutors_id": [115, 116],
+    "tutors_id": [1, 2],
     "image_url": "/images/music.jpg",
     "description": "A course on music theory and practice, including instrument playing and composition.",
     "subject": "Music"
