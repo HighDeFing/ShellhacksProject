@@ -32,8 +32,8 @@ const SearchBar = ({ onSearch }) => {
 
   return (
     <div
-      className={`sticky top-0 z-50 mx-auto flex items-center justify-center px-3 py-3 transition-all duration-300 ${
-        isSticky ? "w-2/3" : "w-full"
+      className={`sticky top-0 z-10 mx-auto flex items-center justify-center px-3 py-3 transition-all duration-500 ${
+        isSticky ? "w-[55%]" : "w-full"
       }`}
     >
       <div

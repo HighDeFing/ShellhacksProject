@@ -10,7 +10,7 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="flex h-dvh w-screen flex-col align-middle">
+    <div className="flex h-auto w-screen flex-col align-middle">
       <Header />
       <Outlet />
     </div>

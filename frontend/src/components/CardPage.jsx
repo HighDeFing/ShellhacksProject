@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Schedule from "./Schedule.jsx";
 import { IoMdExit } from "react-icons/io";
 import TutorList from "./TutorList.jsx";
-import TeamTable from "./TeamTable.jsx";
+// import TeamTable from "./TeamTable.jsx"; // If needed
 
 const CardPage = () => {
   const { id } = useParams(); // Get the course id from the URL
@@ -21,30 +21,45 @@ const CardPage = () => {
     return <p>Loading...</p>;
   }
 
-  console.log(course);
-
   return (
-    <div className="flex h-dvh w-full items-center justify-center pb-40 align-middle">
-      <div className="flex h-3/4 w-1/2 border-2 border-black">
-        <div className="flex w-1/2 flex-col">
-          <div className="flex h-16 flex-row items-center justify-start">
-            <Link to="/">
-              <IoMdExit className="mx-3 size-10" />
+    <div className="flex h-auto w-full items-center justify-center py-10">
+      <div className="flex h-full w-full max-w-screen-2xl rounded-lg border-2 border-gray-300 bg-white shadow-lg">
+        {/* Left Section */}
+        <div className="w-1/2 p-8">
+          <div className="mb-4 flex items-center">
+            <Link to="/" className="mr-3">
+              <IoMdExit className="text-3xl text-gray-600 hover:text-gray-800" />
             </Link>
-            <h1 className="text-4xl">{course.name}</h1>
+            <h1 className="text-5xl font-bold text-gray-800">{course.name}</h1>
           </div>
-          <div>
-            <p className="border-2 p-10">{course.description}</p>
-            {/* <p>{course.tutors_id}</p>
-            <p>{course.image_url}</p> */}
+          {/* Image (if available) */}
+          {course.image_url && (
+            <img
+              src={course.image_url}
+              alt={course.name}
+              className="mb-6 h-64 w-full rounded-lg object-cover shadow-md"
+            />
+          )}
+          {/* Course Description */}
+          <div className="mb-6 rounded-lg border border-gray-200 bg-gray-50 p-6 shadow-sm">
+            <h2 className="mb-4 text-2xl font-semibold text-gray-700">
+              Course Description
+            </h2>
+            <p className="text-lg leading-relaxed text-gray-600">
+              {course.description}
+            </p>
           </div>
         </div>
-        <div className="w-1/2 border-l-2 border-black">
-          <TutorList courseTutorsId={course.tutors_id} />
-          {/* <TeamTable /> */}
+
+        {/* Right Section */}
+        <div className="w-1/2 border-l-2 border-gray-200 p-8">
+          {/* Tutor List */}
+          <div className="mb-6">
+            <TutorList courseTutorsId={course.tutors_id} />
+          </div>
+          {/* Optional: Add more content like a schedule, team table, etc. */}
+          {/* <Schedule /> */}
         </div>
-        {/* Tutor Info */}
-        {/* <Schedule /> */}
       </div>
     </div>
   );
