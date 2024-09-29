@@ -57,14 +57,14 @@ const TutorCard = () => {
     if (selectedSchedule && student) {
         const newAppointmentForStudent = {
             date: selectedSchedule,
-            tutor_id: tutor.id, // Ensure this is the correct ID
+            tutor_id: tutor._id, // Ensure this is the correct ID
             courses: courseId, // Ensure this is the correct ID
             subject: tutor.subject
         };
 
         const newAppointmentForTutor = {
             date: selectedSchedule,
-            student_id: student.id, // Ensure this is the correct ID
+            student_id: student._id, // Ensure this is the correct ID
             courses: courseId, // Ensure this is the correct ID
             subject: tutor.subject
         };
@@ -72,11 +72,20 @@ const TutorCard = () => {
         const updatedStudentAppointments = [...student.appointments, newAppointmentForStudent];
         const updatedTutorAppointments = [...tutor.appointments, newAppointmentForTutor];
 
+        // Update schedule_available and schedule_taken
+        const updatedScheduleAvailable = tutor.schedule_available.filter(day => day !== selectedSchedule);
+        const updatedScheduleTaken = [...tutor.schedule_taken, selectedSchedule];
+
         const { _id, ...studentWithoutId } = student; // Exclude _id from the student object
         const updatedStudent = { ...studentWithoutId, appointments: updatedStudentAppointments };
 
-        const { id, ...tutorWithoutId } = tutor; // Exclude id from the tutor object
-        const updatedTutor = { ...tutorWithoutId, appointments: updatedTutorAppointments };
+        const { _id: tutorId, ...tutorWithoutId } = tutor; // Exclude _id from the tutor object
+        const updatedTutor = {
+            ...tutorWithoutId,
+            appointments: updatedTutorAppointments,
+            schedule_available: updatedScheduleAvailable,
+            schedule_taken: updatedScheduleTaken
+        };
 
         try {
             const studentResponse = await fetch(`http://localhost:3000/api/students/update/${student._id}`, {
@@ -87,7 +96,7 @@ const TutorCard = () => {
                 body: JSON.stringify(updatedStudent)
             });
 
-            const tutorResponse = await fetch(`http://localhost:3000/api/tutors/update/${tutor.id}`, {
+            const tutorResponse = await fetch(`http://localhost:3000/api/tutors/update/${tutorId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"

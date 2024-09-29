@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 const Appointments = ({ role, appointments }) => {
     const [tutors, setTutors] = useState({});
     const [courses, setCourses] = useState({});
+    const [students, setStudents] = useState({});
 
     const fetchTutorDetails = async (tutorId) => {
         try {
@@ -19,21 +20,35 @@ const Appointments = ({ role, appointments }) => {
     };
 
     const fetchCourseDetails = async (courseId) => {
-    try {
-        let response = await fetch(`http://localhost:3000/api/courses/readeasy/${courseId}`);
-        if (response.status === 404) {
-            response = await fetch(`http://localhost:3000/api/courses/read/${courseId}`);
+        try {
+            let response = await fetch(`http://localhost:3000/api/courses/readeasy/${courseId}`);
+            if (response.status === 404) {
+                response = await fetch(`http://localhost:3000/api/courses/read/${courseId}`);
+            }
+            if (response.ok) {
+                const data = await response.json();
+                setCourses(prevCourses => ({ ...prevCourses, [courseId]: data }));
+            } else {
+                console.error(`Failed to fetch course with ID ${courseId}`);
+            }
+        } catch (error) {
+            console.error(`Error fetching course with ID ${courseId}:`, error);
         }
-        if (response.ok) {
-            const data = await response.json();
-            setCourses(prevCourses => ({ ...prevCourses, [courseId]: data }));
-        } else {
-            console.error(`Failed to fetch course with ID ${courseId}`);
+    };
+
+    const fetchStudentDetails = async (studentId) => {
+        try {
+            const response = await fetch(`http://localhost:3000/api/students/read/${studentId}`);
+            if (response.ok) {
+                const data = await response.json();
+                setStudents(prevStudents => ({ ...prevStudents, [studentId]: data }));
+            } else {
+                console.error(`Failed to fetch student with ID ${studentId}`);
+            }
+        } catch (error) {
+            console.error(`Error fetching student with ID ${studentId}:`, error);
         }
-    } catch (error) {
-        console.error(`Error fetching course with ID ${courseId}:`, error);
-    }
-};
+    };
 
     useEffect(() => {
         appointments.forEach(appointment => {
@@ -42,6 +57,9 @@ const Appointments = ({ role, appointments }) => {
             }
             if (!courses[appointment.courses]) {
                 fetchCourseDetails(appointment.courses);
+            }
+            if (!students[appointment.student_id]) {
+                fetchStudentDetails(appointment.student_id);
             }
         });
     }, [appointments]);
@@ -66,7 +84,7 @@ const Appointments = ({ role, appointments }) => {
                                 <>
                                     <strong>Subject:</strong> {appointment.subject} <br />
                                     <strong>Date:</strong> {appointment.date} <br />
-                                    <strong>Student ID:</strong> {appointment.student_id} <br />
+                                    <strong>Student:</strong> {students[appointment.student_id]?.name || 'Loading...'} <br />
                                     <strong>Course:</strong> {courses[appointment.courses]?.name || 'Loading...'}
                                 </>
                             )}
