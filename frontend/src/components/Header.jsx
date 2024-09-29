@@ -24,7 +24,7 @@ const Header = () => {
   };
 
   return (
-    <div className="bg h-24 w-full border-b border-black border-opacity-5 bg-gray-50">
+    <div className="sticky top-0 mb-12 h-24 min-h-24 w-full border-b border-black border-opacity-5 bg-gray-50">
       <div className="flex h-full w-full items-center justify-between px-12">
         <Link to="/">
           <p className="text-5xl text-gray-500">
@@ -33,8 +33,8 @@ const Header = () => {
         </Link>
         <div className="flex space-x-7">
           {/* Show token or "Not logged in" */}
-          <p className="flex h-12 w-[30ch] items-center overflow-hidden text-ellipsis whitespace-nowrap border-2 text-sm">
-            Logged in: {authToken ? authToken : "Not logged in"}
+          <p className="flex h-12 w-[15ch] items-center overflow-hidden text-ellipsis whitespace-nowrap border-2 text-sm">
+            Token: {authToken ? authToken : "Not logged in"}
           </p>
 
           {/* If user is logged in, show logout on the left and profile on the right, otherwise show modals */}

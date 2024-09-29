@@ -6,7 +6,7 @@ const LandingPage = () => {
   return (
     <>
       <SearchBar />
-      <HeroSection />
+      {/* <HeroSection /> */}
       <CardContainer />
     </>
   );

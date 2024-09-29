@@ -18,7 +18,7 @@ const SubjectSelection = () => {
   ];
 
   return (
-    <div className="flex w-full items-center justify-center space-x-4 pb-5 pt-14">
+    <div className="flex w-full items-center justify-center space-x-4 py-5">
       {subjects.map((subject) => (
         <div
           key={subject.name}

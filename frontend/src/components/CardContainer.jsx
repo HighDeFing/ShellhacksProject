@@ -14,10 +14,10 @@ const CardContainer = () => {
 
   return (
     <div className="flex h-auto w-full justify-center">
-      <div className="w-full max-w-screen-lg border-2">
+      <div className="w-full max-w-screen-lg">
         <SubjectSelection />
         {/* Change to Grid to allow 3 per row */}
-        <div className="grid w-full grid-cols-3 place-content-center gap-8 border-2 px-20">
+        <div className="grid w-full grid-cols-3 place-content-center gap-8 px-20">
           {subjects.map((subject) => (
             <Link to={`/course/${subject._id}`} key={subject._id}>
               <CourseCard

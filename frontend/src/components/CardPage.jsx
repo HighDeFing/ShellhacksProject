@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Schedule from "./Schedule.jsx";
+import { IoMdExit } from "react-icons/io";
 
 const CardPage = () => {
   const { id } = useParams(); // Get the course id from the URL
@@ -18,15 +19,23 @@ const CardPage = () => {
     return <p>Loading...</p>;
   }
 
+  console.log(course);
+
   return (
-    <div className="flex h-dvh w-full items-center justify-center border-2 align-middle">
-      <div className="border-2 border-red-500 p-60">
-        <h1>{course.title}</h1>
+    <div className="flex h-dvh w-full items-center justify-center align-middle">
+      <div className="flex w-auto flex-col border-2 border-red-500 p-60">
+        {/* Title Portion */}
+        <div className="flex w-full items-center justify-start border-2">
+          <IoMdExit className="size-6" />
+          <h1 className="border-2">{course.name}</h1>
+        </div>
         <p>{course.description}</p>
-        <p>{course.duration}</p>
-        <p>{course.instructor}</p>
+        <p>{course.tutors_id}</p>
+        <p>{course.image_url}</p>
+        {/* Tutor Info */}
+        <div></div>
+        <Schedule />
       </div>
-      <Schedule />
     </div>
   );
 };
