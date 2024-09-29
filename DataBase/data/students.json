@@ -19,7 +19,7 @@
         "gender": "Female",
         "picture": "emma_picture.jpg",
         "courses": [5, 3],
-        "schedule": ["Mon", "Tue", "Wed", "Thu", "Fri"],
+        "schedule": ["Mon", "Tue", "Wed", "Thgitu", "Fri"],
         "password": "password789",
         "role": "student"
     },
