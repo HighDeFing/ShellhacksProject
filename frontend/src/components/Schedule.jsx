@@ -1,46 +1,39 @@
-import { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import { useState } from "react";
 
-const Schedule = ({ tutorId }) => {
-    const [scheduleAvailable, setScheduleAvailable] = useState([]);
-    const [tutorInfo, setTutorInfo] = useState(null);
+const Schedule = () => {
+    const [selectedDay, setSelectedDay] = useState("");
 
-    useEffect(() => {
-        fetch(`http://localhost:3000/api/tutors/read/${tutorId}`)
-            .then((response) => response.json())
-            .then((data) => {
-                if (data) {
-                    setTutorInfo(data);
-                    if (Array.isArray(data.schedule_available)) {
-                        setScheduleAvailable(data.schedule_available);
-                    }
-                }
-            })
-            .catch((error) => console.error("Error fetching data:", error));
-    }, [tutorId]);
+    const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+    const handleDayChange = (event) => {
+        setSelectedDay(event.target.value);
+    };
+
+    const handleSubmit = () => {
+        if (selectedDay) {
+            alert(`Appointment scheduled on ${selectedDay}`);
+        } else {
+            alert("Please select a day.");
+        }
+    };
 
     return (
         <div className="schedule-container">
-            {tutorInfo && (
-                <div className="tutor-info">
-                    <h3>Tutor Information</h3>
-                    <p>Name: {tutorInfo.name}</p>
-                    <p>Email: {tutorInfo.email}</p>
-                    <p>Phone: {tutorInfo.phone}</p>
-                </div>
-            )}
-            <div className="schedule-available">
-                <h3>Available Schedule:</h3>
-                {scheduleAvailable.map((day, index) => (
-                    <span key={index}>{day}{index < scheduleAvailable.length - 1 ? ', ' : ''}</span>
-                ))}
+            <h2>Schedule an Appointment</h2>
+            <div className="day-selector">
+                <label htmlFor="day">Select a day:</label>
+                <select id="day" value={selectedDay} onChange={handleDayChange}>
+                    <option value="">--Select a day--</option>
+                    {daysOfWeek.map((day) => (
+                        <option key={day} value={day}>
+                            {day}
+                        </option>
+                    ))}
+                </select>
             </div>
+            <button onClick={handleSubmit}>Confirm Appointment</button>
         </div>
     );
-};
-
-Schedule.propTypes = {
-    tutorId: PropTypes.string.isRequired,
 };
 
 export default Schedule;
